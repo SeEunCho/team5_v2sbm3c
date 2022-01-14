@@ -18,7 +18,7 @@
  
 ## Contact us!   (팀원분들은 메일주소 업데이트 해주세요!!)
 
->- 조세은: 메일주소  
+>- 조세은: [dnebpetal@kakao.com](dnebpetal@kakao.com)
 >- 차대현: 메일주소  
 >- 최용석: [dydtjr1717@gmail.com](dydtjr1717@gmail.com)
 >- 하지희: 메일주소  
