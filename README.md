@@ -7,7 +7,8 @@
 챗봇도 가능합니다!!🎉
 ```
 
-### 서비스 주요기능
+## 서비스 주요기능
+
 
  >1. 부동산 트렌드 분석
  >2. 사용자 별 맞춤형 부동산 매물 추천
@@ -15,7 +16,7 @@
  >4. 부동산 시세 확인
  
  
-### Contact us!   (팀원분들은 메일주소 업데이트 해주세요!!)
+## Contact us!   (팀원분들은 메일주소 업데이트 해주세요!!)
 
 >- 조세은: 메일주소  
 >- 차대현: 메일주소  
@@ -23,31 +24,35 @@
 >- 하지희: 메일주소  
 
 
-### Table of Contents
+## Table of Contents
 
- >0. Requirements
- >1. (Mac) Project Setup
- >2. (Windows) Project Setup
- >3. EndPoints (API's)
- >4. References
+ > - [0. Requirements](#requirements)
+ > - [1. (Mac) Project Setup](#mac-project-setup)
+ > - [2. (Windows) Project Setup](#windows-project-setup)
+ > - [3. EndPoints (API's)](#endpoints)
+ > - [4. References](#references)
  
  
- ### Requirements
+ ## requirements
+
+ > blahblah
+ 
+ 
+ ## mac project setup
  
  > blahblah
  
- ### (Mac) Project Setup
+ 
+ ## windows project setup
  
  > blahblah
  
- ### (Windows) Project Setup
+ 
+ ## endpoints
  
  > blahblah
  
- ### EndPoints (API's)
  
- > blahblah
- 
- ### References
+ ## references
  
  > blahblah
