@@ -9,12 +9,21 @@
 <style type="text/css">
   *{ font-family: Malgun Gothic; font-size: 26px;}
 </style>
+
+<link href="/css/style.css" rel="Stylesheet" type="text/css">
+ 
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
 </head>
 <body>
-       <h1>FaQ 등록 폼</h1>
-        
-  <DIV class='menu_line'></DIV>
+
+ <jsp:include page="/WEB-INF/views/menu/top.jsp" flush='false' />
   
+   <DIV class='title_line'>FAQ 등록하기 (관리자 전용)</DIV>
       <FORM name='frm' method='POST' action='/faq' class="form-horizontal">
         <input type="hidden" name="adminnid" value="1"> <%-- 관리자 개발후 변경 필요 --%>
         
@@ -22,22 +31,23 @@
            <label class="control-label col-md-2">제목</label>
            <div class="col-md-10">
              <input type='text' name='title' value='FAQ title' required="required" 
-                       autofocus="autofocus" class="form-control" style='width: 100%;'>
+                       autofocus="autofocus" class="form-control" style='width: 90%;'>
            </div>
         </div>
         <div class="form-group">
            <label class="control-label col-md-2">본문</label>
            <div class="col-md-10">
-             <textarea name='text' required="required" class="form-control" rows="12" style='width: 100%;'>text in box</textarea>
+             <textarea name='text' required="required" class="form-control" rows="12" style='width: 90%;'>text in box</textarea>
            </div>
         </div>
 
         <div class="content_body_bottom">
           <button type="submit" class="btn btn-primary">등록</button>
-          <button type="button" onclick="/faqlist'" class="btn btn-primary">목록</button>
+          <button type="button" onclick="location.href='/faqlist'" class="btn btn-primary">목록</button>
         </div>
       
       </FORM>
+      <jsp:include page="/WEB-INF/views/menu/bottom.jsp" flush='false' />
 </body>
 </html>
 

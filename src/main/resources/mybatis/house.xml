@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace = "dev.mvc.house.HouseDAOInter">
+
+  <insert id="create"  parameterType="dev.mvc.house.HouseVO">
+            INSERT INTO house(houseno, nomination, area, terrain, price, hdate, likes, loca,  hname)
+            VALUES (house_seq.nextval, #{nomination}, #{area}, #{terrain}, #{price}, sysdate, #{likes}, #{loca} , #{hname})
+  </insert>
+
+  <select id="list_houseno_asc" resultType="dev.mvc.house.HouseVO">
+    SELECT  houseno, nomination, area, terrain, price, hdate, likes, loca, hname, adminid
+    FROM house
+    ORDER BY houseno ASC
+  </select>
+  
+  <select id="list_price_asc" resultType="dev.mvc.house.HouseVO">
+    SELECT  houseno, hname, hdate, price
+    FROM house
+    ORDER BY price ASC
+  </select>  
+  
+
+  <select id="read" resultType="dev.mvc.house.HouseVO" parameterType="int">
+            SELECT houseno, nomination, area, terrain, price, hdate, likes, loca, hname, adminid
+            FROM house
+            WHERE houseno = #{houseno}
+  </select>
+  
+  
+  <update id="update" parameterType="dev.mvc.house.HouseVO">
+    UPDATE house
+    SET hname=#{hname}, price=#{price}
+    WHERE houseno = #{houseno}
+  </update>
+  
+   
+  <delete id="delete" parameterType="int">
+    DELETE FROM house
+    WHERE houseno=#{houseno}
+  </delete>  
+  
+</mapper>

@@ -22,6 +22,8 @@ public class FaqVO {
     private String text;
     private String cdate;
     private int adminid;
+    
+    // 추후에 좋아요 싫어요 개수 카운팅하는 변수 추가할 가능성... 있음.
 
     public FaqVO() {
         

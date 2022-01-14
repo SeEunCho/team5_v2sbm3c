@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.qna.QnaDAOInter">
+
+    <!-- Qna생성 -->
+    <insert id="createQna" parameterType="dev.mvc.qna.QnaVO" >
+           insert into qna (qnano, title, secret, text, qdate, qcateno, memberid)
+           values(qna_seq.nextval, #{title}, #{secret}, #{text}, sysdate, #{qcateno}, #{memberid})
+    </insert>
+    
+    <!-- 특정회원의 QnA List 조희 -->
+    <select id="getListWithMemberid" resultType="dev.mvc.qna.QnaVO" parameterType="int">
+        select qnano, title, secret, text, qdate, memberid 
+        from qna
+        where memberid=#{memberid}   
+    </select>
+    
+    <!-- 삭제, 업데이트용 1건조회 -->
+    <select id="getOneWithPK" parameterType="int" resultType="dev.mvc.qna.QnaVO">
+        select qnano, title, secret, text, qdate, qcateno, memberid
+        from qna
+        where qnano=#{qnano}
+    </select>
+    
+    <!-- 업데이트 처리 -->
+    <update id="updateQna" parameterType="dev.mvc.qna.QnaVO">
+        update qna
+        set title=#{title}, secret=#{secret}, text=#{text}, qdate=sysdate, qcateno=#{qcateno}
+        where qnano=#{qnano}
+    </update>
+    
+    <!-- 삭제 처리 -->
+    <delete id="deleteQna" parameterType="int">
+        delete from qna
+        where qnano=#{qnano}    
+    </delete>
+    
+    <!-- QnA 카테고리 별 소속된 개수 출력 -->
+   <select id="countByQnacateno" resultType="int" parameterType="int">
+        select count(*) as cnt
+        from qna
+        where qcateno=#{qcateno}
+    </select>
+    
+        <!-- 카테고리 별 삭제 처리 -->
+    <delete id="deleteQnaByQcateno" parameterType="int">
+        delete from qna
+        where qcateno=#{qcateno}
+    </delete>
+    
+    <!-- fk에 해당하는 QnA 조회 -->
+    <select id="joinQnaAndQcate" resultType="dev.mvc.qna.QnaVO" parameterType="int">
+        select qnano, q.title, secret, q.text, q.qdate, q.qcateno, q.memberid
+        from qna_cate c, qna q
+        where c.qcateno=#{qcateno} and c.qcateno=q.qcateno
+    </select>
+    
+    
+</mapper>

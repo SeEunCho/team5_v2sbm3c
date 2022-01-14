@@ -14,7 +14,8 @@
  
 <!-- Bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    
+<link rel="icon" href="/images/house_pavicon.png">
+
 </head>
 <body>
 <jsp:include page="./menu/top.jsp" flush='false' />
@@ -23,6 +24,7 @@
     <%-- /static/images/resort02.jpg --%>
     <IMG src='/images/main_page.jpg' style='width: 50%;'>
   </DIV>
+
   
   <DIV style='margin: 0px auto; width: 90%;'>
     <DIV style='float: left; width: 50%;'>

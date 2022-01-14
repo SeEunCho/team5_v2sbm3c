@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.answer.AnswerDAOInter">
+
+    <insert id="createAns" parameterType="dev.mvc.answer.AnswerVO">
+        insert into answer(answerno, answer, adate, qnano, adminid)
+        values(answer_seq.nextval, #{answer}, sysdate, #{qnano}, #{adminid})
+    </insert>
+
+    <select id="getOneByFk" parameterType="int" resultType="dev.mvc.answer.AnswerVO">
+        select answerno, answer, adate, qnano, adminid
+        from answer
+        where qnano=#{qnano}
+    </select>
+    
+      <select id="getOneByPk" parameterType="int" resultType="dev.mvc.answer.AnswerVO">
+        select answerno, answer, adate, qnano, adminid
+        from answer
+        where answerno=#{answerno}
+    </select>
+    
+    <update id="updateAns" parameterType="dev.mvc.answer.AnswerVO">
+         update answer
+         set answer=#{answer}, adate=sysdate
+    </update>
+    
+    <delete id="deleteAns" parameterType="int">
+         delete from answer
+         where answerno=#{answerno}     
+    </delete>
+
+</mapper>

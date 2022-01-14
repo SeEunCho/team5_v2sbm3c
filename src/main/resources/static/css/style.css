@@ -20,7 +20,9 @@
   .top_img {
     width: 100%;
     height: 100px;
-    background-image: url('/css/images/menu_top.jpg');
+    /* background-image: url('/css/images/menu_top.jpg'); */
+    /* 추후 적절한 이미지 구해 변경할 것. */
+    background-color:  #5B9FE6;
   }
   
   .top_menu_label {
@@ -197,6 +199,14 @@
     margin: 20px auto;
     font-size: 20px;    
   }
+
+    .title_line_answer {
+    text-align: right;
+    border-bottom: solid 3px #555555;
+    width: 100%;
+    margin: 20px auto;
+    font-size: 20px;    
+  }
   
   .title_link:link{  /* 방문전 상태 */
     font-size: 20px;    
@@ -350,6 +360,17 @@
     text-align: right;
     font-size: 0.9em;
   }
+
+    .content_middle {
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 0.9em;
+  }
   
   .li_left_menu_1 { /* 화면 좌측 대분류 */
     list-style: none;
@@ -449,6 +470,83 @@
     font-size: 1.5em;
   }
   
+  /* =================================  top.jsp dropDown 메뉴 전용 css  ========================================== */
+
+
+  ul li{
+    list-style: none;  /* 블렛기호(마커) 삭제 */
+  }
+  
+  .link_menu_top {
+    text-decoration: none;  /* 밑줄 없음 */
+    color: #FFFFFF;
+  }
+
+  .link_menu_top:hover {  /* mouse hover */
+    text-decoration: none;
+    color: #FFFF00;
+  }
+    
+  .link_menu_sub {
+    text-decoration: none;
+    color: #FFFF00;
+  }
+
+  /* id에 적용 */
+  #menu {
+    border-radius: 25px;
+    width: 120px;
+    height: 50px;
+    background: #FF9A88;
+    line-height: 50px; 
+    margin:0 auto;
+    text-align: center;
+    position: fixed;
+    top: 20px;  
+    left: 70%;
+  }
+  
+  /* float 속성의 가운데 정렬 선언 */
+  #menu ul {
+    float: right; 
+    position: relative; 
+    left: -50%;  
+  }
+
+  /* top 메뉴 */
+  #menu > ul > li {
+    border-radius: 25px;
+    float: left;
+    width: 130px;
+    position: relative;
+    left: 50%;
+  }
+
+  /* top 메뉴에 마우스가 hover되었을 때 배경색을 변경 */
+  #menu > ul > li:hover {
+    background-color: #FF9A88;
+  }
+
+  /* 서브메뉴 속성 정의 */
+  #menu > ul > li > ul {
+    border-radius: 25px;
+    width: 130px;
+    display: none;  /* 감춤 */
+    background: #FF9A88;
+    position: relative;
+    left: 0%;
+  }
+    
+  /* 상단 메뉴에 마우스 hover시 하위 메뉴가 펼쳐지는 효과 발생 */
+  #menu > ul > li:hover > ul {
+    display: block; /* DIV 태그처럼 영역의 생성 */
+  }
+  
+  #menu > ul > li > ul > li:hover {
+    border-radius: 25px;
+    background: #FF583B;
+    transition: ease 1s; /* animation 효과 1초 발생 */
+  }
     
   
   

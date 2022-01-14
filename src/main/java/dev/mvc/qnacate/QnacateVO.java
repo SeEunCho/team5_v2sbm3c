@@ -1,5 +1,7 @@
 package dev.mvc.qnacate;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,16 +11,12 @@ public class QnacateVO {
     
     private int qcateno;
     private String name = ""; // for avoiding NPE
-    private int memberid;
     private int adminid;
-    private int houseno;
-    
-    public QnacateVO(int qcateno, String name, int memberid, int adminid, int houseno) {
+        
+    public QnacateVO(int qcateno, String name, int adminid) {
         this.qcateno = qcateno;
         this.name = name;
-        this.memberid = memberid;
         this.adminid = adminid;
-        this.houseno = houseno;
     }
     
     public QnacateVO() {

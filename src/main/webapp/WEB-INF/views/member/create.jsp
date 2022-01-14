@@ -7,7 +7,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title></title>
 
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
 
@@ -17,7 +17,22 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+<style>
+  .btn-primary {
+    color: #fff;
+    background-color: #2c3e50;
+    border-color: #2c3e50;
+  }
+  
+  .btn-info {
+    color: #fff;
+    background-color: #3498db;
+    border-color: #3498db;
+  }
+</style>
+
 <script type="text/javascript">
+  
   $(function () { // 자동 실행
       
       $('#btn_checkEmail').on('click', checkEmail);
@@ -40,21 +55,24 @@
       $('#passwd2').keyup(function () { // 패스워드 일치여부 확인
         if ($('#passwd').val() != '' && $('#passwd2').val() == '') {
           null;
+          $('#passwd2_div').attr('class', 'col-md-10');
         } else if ($('#passwd').val() != '' && $('#passwd2').val() != '') {
           if ($('#passwd').val() != $('#passwd2').val()) {
-            $('#chkNotice').html('비밀번호가 일치하지 않습니다.<br>');
+            $('#chkNotice').html('패스워드가 일치하지 않습니다.<br>');
             $('#chkNotice').attr('style', 'color: #ff4114; font-size: 13px;');
+            $('#passwd2_div').attr('class', 'col-md-10 has-error');
           } else {
-            $('#chkNotice').html('비밀번호가 일치합니다<br>');
+            $('#chkNotice').html('패스워드가 일치합니다<br>');
             $('#chkNotice').attr('style', 'color: #126E82; font-size: 13px;');
+            $('#passwd2_div').attr('class', 'col-md-10 has-success');
           }
         }
       });
-
+      
 
     });
 
-  function checkEmail() {
+  function checkEmail() { // 이메일 중복확인
 
       var frm = $('#frm'); // id가 frm인 태그 검색
       var email = $('#email', frm).val(); // frm 폼에서 id가 'email'인 태그 검색
@@ -106,8 +124,7 @@
       }
     }
   
-  // jQuery ajax 요청
-  function checkID() {
+  function checkID() { // ID 중복확인
 
       var frm = $('#frm'); // id가 frm인 태그 검색
       var id = $('#id', frm).val(); // frm 폼에서 id가 'id'인 태그 검색
@@ -217,7 +234,7 @@
       msg += "패스워드를 다시 입력해주세요.<br>";
 
       $('#modal_content').attr('class', 'alert alert-danger'); // CSS 변경
-      $('#modal_title').html('패스워드 일치 여부  확인'); // 제목 
+      $('#modal_title').html('패스워드 일치 여부 확인'); // 제목 
       $('#modal_content').html(msg); // 내용
       $('#modal_panel').modal(); // 다이얼로그 출력
 
@@ -261,20 +278,20 @@
   <!-- ******************** Modal 알림창 종료 ******************** -->
 
   <DIV class='title_line'>
-    회원 가입
+    회원가입
   </DIV>
 
   <DIV class='content_body'>
 
-  <ASIDE class="aside_right">
+  <!-- <ASIDE class="aside_right">
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span> 
-    <A href='./create.do'>회원 가입</A>
+    <A href='./create.do'>회원가입</A>
     <span class='menu_divide' >│</span> 
     <A href='./list.do'>목록</A>
   </ASIDE> 
 
-  <div class='menu_line'></div>
+  <div class='menu_line'></div> -->
   
   <FORM name='frm' id='frm' method='POST' action='./create.do' class="form-horizontal">
     <input type="hidden" name="address" value="">
@@ -282,8 +299,10 @@
     <div class="form-group">
       <label for="email" class="col-md-2 control-label" style='font-size: 0.9em;'>이메일*</label>    
       <div class="col-md-10">
-        <input type='text' class="form-control" name='email' id='email' value='' required="required" style='width: 30%;' placeholder="abc@gmail.com" autofocus="autofocus">
-        <button type='button' id="btn_checkEmail" class="btn btn-info btn-md">중복확인</button>
+        <div class="input-group col-md-9">
+          <input type='text' class="form-control" name='email' id='email' value='' required="required" style='width: 30%;' placeholder="abc@mail.com" autofocus="autofocus">
+          <button type='button' id="btn_checkEmail" class="btn btn-info btn-md">중복확인</button>
+        </div>
         <SPAN id='email_span'></SPAN> <!-- Email 중복 관련 메시지 -->        
       </div>
     </div> 
@@ -291,8 +310,10 @@
     <div class="form-group">
       <label for="id" class="col-md-2 control-label" style='font-size: 0.9em;'>아이디*</label>    
       <div class="col-md-10">
-        <input type='text' class="form-control" name='id' id='id' value='' required="required" style='width: 30%;' placeholder="아이디" autofocus="autofocus">
-        <button type='button' id="btn_checkID" class="btn btn-info btn-md">중복확인</button>
+        <div class="input-group col-md-9">
+          <input type='text' class="form-control" name='id' id='id' value='' required="required" style='width: 30%;' placeholder="아이디" autofocus="autofocus">
+          <button type='button' id="btn_checkID" class="btn btn-info btn-md">중복확인</button>
+        </div>
         <SPAN id='id_span'></SPAN> <!-- ID 중복 관련 메시지 -->        
       </div>
     </div>   
@@ -306,12 +327,12 @@
 
     <div class="form-group">
       <label for="passwd2" class="col-md-2 control-label" style='font-size: 0.9em;'>패스워드 확인*</label>    
-      <div class="col-md-10">
+      <div class="col-md-10" id="passwd2_div">
         <input type='password' class="form-control" name='passwd2' id='passwd2' value='' required="required" style='width: 30%;' placeholder="패스워드">
         <font id="chkNotice" size="2"></font>
       </div>
     </div>
-    
+
     <div class="form-group">
       <label for="name" class="col-md-2 control-label" style='font-size: 0.9em;'>성명*</label>    
       <div class="col-md-10">
@@ -331,9 +352,11 @@
     <div class="form-group">
       <label for="zipcode" class="col-md-2 control-label" style='font-size: 0.9em;'>우편번호</label>    
       <div class="col-md-10">
-        <input type='text' class="form-control" name='zipcode' id='zipcode' 
-                   value='' style='width: 30%;' placeholder="우편번호">
-        <button type="button" id="btn_DaumPostcode" class="btn btn-info btn-md">우편번호 찾기</button>
+        <div class="input-group">
+          <input type='text' class="form-control" name='zipcode' id='zipcode' 
+                   value='' style='width: 50%;' placeholder="우편번호">
+          <button type="button" id="btn_DaumPostcode" class="btn btn-info btn-md">우편번호 찾기</button>
+        </div>
       </div>
     </div>  
 

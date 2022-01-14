@@ -5,20 +5,41 @@
 
 <mapper namespace="dev.mvc.faq.FaqDAOInter">
 
+    <!-- create FAQ -->
     <insert id="createFaq" parameterType="dev.mvc.faq.FaqVO">
             insert into faq (faqno, title, text, Cdate, adminid)
             values (faq_seq.nextval, #{title}, #{text}, sysdate, 1)    
     </insert>
     
+    <!-- retrieve particular single FAQ about specific adminid -->
     <select id="getListWithFK" resultType="dev.mvc.faq.FaqVO" parameterType="int">
             select faqno, title, text, Cdate, adminid
             from faq
             where adminid=#{adminid}
     </select>
     
+    <!-- get all of FAQ -->
     <select id="getAll" resultType="dev.mvc.faq.FaqVO">
             select faqno, title, text, Cdate, adminid
             from faq
     </select>
+    
+    <!-- for update and delete -->
+    <select id="getOneWithPK" resultType="dev.mvc.faq.FaqVO" parameterType="int">
+            select faqno, title, text, Cdate, adminid
+            from faq 
+            where faqno=#{faqno}
+    </select>
+    
+    <update id="updateFaq" parameterType="dev.mvc.faq.FaqVO">
+        update faq
+        set title=#{title}, text=#{text}, Cdate=sysdate
+        where faqno=#{faqno}
+    </update>
+    
+    <delete id="deleteFaq" parameterType="int">
+        delete from faq
+        where faqno=#{faqno}
+    </delete>
 
 </mapper>

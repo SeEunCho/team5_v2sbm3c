@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.qnacate.QnacateDAOInter">
+
+    <insert id="createQnacate" parameterType="dev.mvc.qnacate.QnacateVO">
+        insert into qna_cate (qcateno, name, adminid)
+        values (qna_cate_seq.nextval, #{name}, #{adminid})
+    </insert>
+    
+   <select id="findCateList" resultType="dev.mvc.qnacate.QnacateVO">
+        select qcateno, name, adminid
+        from qna_cate
+    </select>
+    
+    <select id="findByQcateno" resultType="dev.mvc.qnacate.QnacateVO" parameterType="int">
+        select qcateno, name, adminid
+        from qna_cate
+        where qcateno=#{qcateno}    
+    </select>
+
+    <update id="updateQcategory" parameterType="dev.mvc.qnacate.QnacateVO">
+        update qna_cate
+        set name=#{name}, adminid=#{adminid}
+        where qcateno=#{qcateno}
+    </update>
+    
+    <delete id="deleteQcategory" parameterType="int">
+        delete from qna_cate
+        where qcateno=#{qcateno}    
+    </delete>
+    
+</mapper>

@@ -16,7 +16,7 @@
 
 </head> 
 <body>
-<jsp:include page="../menu/top.jsp" flush='false' />
+<jsp:include page="/WEB-INF/views/menu/top.jsp" flush='false' />
 
 <DIV class='title_line'>알림</DIV>
 
@@ -24,101 +24,53 @@
   <fieldset class='fieldset_basic'>
     <UL>
       <c:choose>
-        <c:when test="${param.code == 'passwd_fail'}">
+      
+         <%-- FaQ 삭제 --%>
+         <c:when test="${code == 'faq_delete_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">패스워드가 일치하지 않습니다.</span>
-          </LI> 
-        </c:when>
-        <c:when test="${param.code == 'product_success'}"> <%-- Java if --%>
-          <LI class='li_none'>
-            <span class="span_success">상품 정보를 등록했습니다.</span>
-          </LI>                   
-          <LI class='li_none'>                                                   
-            <button type='button' 
-                         onclick="location.href='./product_update.do?cateno=${param.cateno}&categrpno=${param.categrpno }&contentsno=${param.contentsno }'"
-                         class="btn btn-default">관련 상품 정보 재등록</button>
-          </LI>
-        </c:when>
-        <c:when test="${param.code == 'product_fail'}"> <%-- Java if --%>
-          <LI class='li_none'>
-            <span class="span_fail">상품 정보 등록에 실패했습니다.</span>
-          </LI>                                                                      
-        </c:when>
-
-        <c:when test="${param.code == 'create_success'}"> <%-- Java if --%>
-          <LI class='li_none'>
-            <span class="span_success">${param.mname }님(${param.id }) 회원 가입을 축하합니다.</span>
-          </LI>  
-          <LI class='li_none'>
-            <button type='button' 
-                         onclick="location.href='./login.do?id=${param.id}'"
-                         class="btn btn-default">로그인</button>
-          </LI> 
-        </c:when>
-        <c:when test="${param.code == 'create_fail'}"> <%-- Java if --%>
-          <LI class='li_none'>
-            <span class="span_fail">회원 가입에 실패했습니다. 다시 시도해주세요.</span>
-          </LI>                                                                      
-        </c:when>
-        <c:when test="${param.code == 'update_success'}"> <%-- Java if --%>
-          <LI class='li_none'>
-            <span class="span_success">${param.mname }님(${param.id }) 회원 정보를 변경했습니다.</span>
-          </LI>
-          <LI class='li_none'>
-            <button type='button' 
-                         onclick="location.href='/'"
-                         class="btn btn-default">확인</button>
-          </LI>                                                                       
-        </c:when>
-        <c:when test="${param.code == 'update_fail'}"> <%-- Java if --%>
-          <LI class='li_none'>
-            <span class="span_fail">${param.mname }님(${param.id }) 회원정보 수정에 실패했습니다.</span>
-          </LI>                                                                      
-        </c:when>
-        <c:when test="${param.code == 'delete_success'}"> <%-- Java if --%>
-          <LI class='li_none'>
-            <span class="span_success">${param.mname }님(${param.id }) 회원정보 삭제에 성공했습니다.</span>
-          </LI>
-          <LI class='li_none'>
-            <button type='button' 
-                         onclick="location.href='/member/list.do'"
-                         class="btn btn-primary">회원 목록</button>
+            <span class="span_fail">FaQ게시글 삭제에 성공하였습니다!</span><br>
+            <button type='button' onclick="location.href='/faqlist'" class="btn btn-primary">목록</button>
           </LI>                                                                 
-        </c:when>        
-        <c:when test="${code == 'delete_fail'}"> <%-- Java if --%>
+        </c:when>
+        <c:when test="${code == 'faq_delete_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">${param.mname }님(${param.id }) 회원정보 삭제에 실패했습니다.</span>
+            <span class="span_fail">FaQ게시글 삭제에 실패하였습니다.</span><br>
+            <span class="span_fail">다시 시도해 주십시오.</span>
+            <button type='button' onclick="location.href='/'" class="btn btn-primary">홈으로</button>
           </LI>                                                                      
         </c:when> 
         
-         <c:when test="${param.code == 'passwd_update_success'}"> <%-- Java if --%>
+          <%-- FaQ 수정 --%>
+          <c:when test="${code == 'faq_update_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_success">${param.mname }님(${param.id }) 패스워드를 변경했습니다.</span>
-          </LI>
-          <LI class='li_none'>
-            <button type='button' 
-                         onclick="location.href='/'"
-                         class="btn btn-primary">확인</button>
+            <span class="span_success">faq 업데이트 성공</span><br>
+            <button type='button' onclick="location.href='/faqlist'" class="btn btn-primary">목록</button>
           </LI>                                                                 
         </c:when>
-        <c:when test="${code == 'passwd_update_fail'}"> <%-- Java if --%>
+        <c:when test="${code == 'faq_update_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">${param.mname }님(${param.id }) 패스워드 변경에 실패했습니다.</span>
-          </LI>                                                                      
+            <span class="span_fail">faq 업데이트 실패</span>
+            <span class="span_fail">다시 시도해 주십시오.</span>
+            <button type='button' onclick="location.href='/'" class="btn btn-primary">홈으로</button>
+          </LI>                                                                             
         </c:when> 
         
+        <%-- FaQ 등록 --%>
          <c:when test="${code == 'faq_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_success">FaQ 등록 성공</span>
+            <span class="span_success">FaQ 등록 성공</span><br>
+            <button type='button' onclick="location.href='/faqlist'" class="btn btn-primary">목록</button>
           </LI>                                                                      
         </c:when> 
-        
          <c:when test="${code == 'faq_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">FaQ 등록 실패</span>
+            <span class="span_fail">FaQ 등록 실패</span><br>
+            <span class="span_fail">다시 시도해 주십시오.</span>
+            <button type='button' onclick="location.href='/'" class="btn btn-primary">홈으로</button>
           </LI>                                                                      
         </c:when> 
-        
+
+         <%-- 예외 메시지 --%>
         <c:otherwise>
           <LI class='li_none_left'>
             <span class="span_fail">알 수 없는 에러로 작업에 실패했습니다.</span>
@@ -127,6 +79,8 @@
             <span class="span_fail">다시 시도해주세요.</span>
           </LI>
         </c:otherwise>
+        
+        <%-- choose end (start line ->26 )  --%>
       </c:choose>
       <LI class='li_none'>
         <br>
@@ -146,7 +100,7 @@
 
 </DIV>
 
-<jsp:include page="../menu/bottom.jsp" flush='false' />
+<jsp:include page="/WEB-INF/views/menu/bottom.jsp" flush='false' />
 </body>
 
 </html>

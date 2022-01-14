@@ -1,8 +1,6 @@
 package dev.mvc.member;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 /*
     memberid NUMBER(10) NOT NULL,
@@ -16,7 +14,7 @@ import lombok.ToString;
     PRIMARY KEY (memberid)
 */
 
-@Getter @Setter @ToString
+@Data
 public class MemberVO {
     
     private int memberid;
@@ -26,6 +24,6 @@ public class MemberVO {
     private String phone = "";
     private String email = "";
     private String address = "";
-    private int grade = 0;
+    private int grade = 1;
    
 }

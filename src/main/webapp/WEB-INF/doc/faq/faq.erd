@@ -23,8 +23,8 @@
       <constraint>
         <height>-1</height>
         <width>-1</width>
-        <x>360</x>
-        <y>542</y>
+        <x>75</x>
+        <y>516</y>
       </constraint>
       <sourceConnections>
         <net.java.amateras.db.visual.model.ForeignKeyModel>
@@ -51,8 +51,8 @@
             <constraint>
               <height>-1</height>
               <width>-1</width>
-              <x>504</x>
-              <y>270</y>
+              <x>268</x>
+              <y>230</y>
             </constraint>
             <sourceConnections/>
             <targetConnections>
@@ -60,8 +60,8 @@
             </targetConnections>
             <error></error>
             <linkedPath></linkedPath>
-            <tableName>TABLE_2</tableName>
-            <logicalName>admin</logicalName>
+            <tableName>admin</tableName>
+            <logicalName>관리자</logicalName>
             <description></description>
             <columns>
               <net.java.amateras.db.visual.model.ColumnModel>
