@@ -22,7 +22,7 @@ public interface NoticeDAOInter {
     /**
      * 조회
      * select id="read" resultType="dev.mvc.notice.NoticeVO" parameterType="int"
-     * @param noticeno 카테고리 그룹 번호, PK
+     * @param noticeno 공지사항 번호, PK
      * @return noticeVO
      */
     public NoticeVO read(int noticeno);

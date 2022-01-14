@@ -105,4 +105,84 @@ public class NoticeCont {
         return mav; // forward
     }
 
+    // http://localhost:9091/notice/update.do
+    /**
+     * 수정 처리
+     * 
+     * @param noticeVO
+     * @return
+     */
+    @RequestMapping(value = "/notice/update.do", method = RequestMethod.POST)
+    public ModelAndView update(NoticeVO noticeVO) {
+        // NoticeVO noticeVO <FORM> 태그의 값으로 자동 생성됨.
+        // request.setAttribute("noticeVO", noticeVO); 자동 실행
+
+        ModelAndView mav = new ModelAndView();
+
+        int cnt = this.noticeProc.update(noticeVO);
+        mav.addObject("cnt", cnt); // request에 저장
+
+        // cnt = 0; // error test
+        if (cnt == 1) {
+            // System.out.println("수정 성공");
+            // response.sendRedirect("/notice/list.do");
+            mav.setViewName("redirect:/notice/list.do");
+        } else {
+            mav.addObject("code", "update"); // request에 저장, request.setAttribute("code", "update")
+            mav.setViewName("/notice/msg"); // /WEB-INF/views/notice/msg.jsp
+        }
+
+        return mav;
+    }
+
+    // http://localhost:9091/notice/read_delete.do?noticeno=1
+    /**
+     * 조회 + 삭제폼
+     * 
+     * @param noticeno 조회할 공지사항 번호
+     * @return
+     */
+    @RequestMapping(value = "/notice/read_delete.do", method = RequestMethod.GET)
+    public ModelAndView read_delete(int noticeno) {
+        ModelAndView mav = new ModelAndView();
+
+        NoticeVO noticeVO = this.noticeProc.read(noticeno); // 삭제할 자료 읽기
+        mav.addObject("noticeVO", noticeVO); // request 객체에 저장
+
+        List<NoticeVO> list = this.noticeProc.list();
+        mav.addObject("list", list); // request 객체에 저장
+
+        mav.setViewName("/notice/read_delete"); // read_delete.jsp
+        return mav;
+    }
+
+    // http://localhost:9091/notice/delete.do
+    /**
+     * 삭제
+     * 
+     * @param noticeno 조회할 공지사항 번호
+     * @return 삭제된 레코드 갯수
+     */
+    @RequestMapping(value = "/notice/delete.do", method = RequestMethod.POST)
+    public ModelAndView delete(int noticeno) {
+        ModelAndView mav = new ModelAndView();
+
+        NoticeVO noticeVO = this.noticeProc.read(noticeno); // 삭제 정보
+        mav.addObject("noticeVO", noticeVO); // request 객체에 저장
+
+        int cnt = this.noticeProc.delete(noticeno); // 삭제 처리
+
+        // cnt = 0; // error test
+        mav.addObject("cnt", cnt); // request 객체에 저장
+
+        if (cnt == 1) {
+            mav.addObject("code", "delete_success"); // request에 저장, request.setAttribute("code", "delete_success")
+        } else {
+            mav.addObject("code", "delete_fail"); // request에 저장, request.setAttribute("code", "delete_fail")
+        }
+        mav.setViewName("/notice/msg"); // /WEB-INF/views/notice/msg.jsp
+
+        return mav;
+    }
+
 }
