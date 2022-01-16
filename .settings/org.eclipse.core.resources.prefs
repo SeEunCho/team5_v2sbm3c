@@ -1,14 +1,10 @@
 =\=\=\=\=\=\=
-<<<<<<<=HEAD
->>>>>>>=a247eb71194fc830deac91881c41b9942bf09048
+<<<<<<<=Updated upstream
+>>>>>>>=Stashed changes
 eclipse.preferences.version=1
-<<<<<<< Updated upstream
 encoding//src/main/resources/application.properties=UTF-8
 encoding//src/main/webapp/WEB-INF/doc/QnA\uAD00\uB9AC/qna_qnacate.sql=utf-8
 encoding//src/main/webapp/WEB-INF/doc/faq/faq.sql=utf-8
 encoding//src/main/webapp/WEB-INF/doc/\uB2F5\uBCC0/answer.sql=utf-8
 encoding//src/main/webapp/WEB-INF/doc/\uD1B5\uD569/\uD1B5\uD569.ddl=utf-8
-=======
-encoding//src/main/webapp/WEB-INF/doc/faq.sql=utf-8
 encoding/<project>=UTF-8
->>>>>>> Stashed changes

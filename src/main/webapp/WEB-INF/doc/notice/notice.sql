@@ -75,3 +75,11 @@ commit;
 WHERE noticeno=2;
 COMMIT;
 >>>>>>> Stashed changes
+
+
+-- 조회
+SELECT noticeno, adminid, noticetitle, noticecontent, rdate
+FROM notice
+WHERE noticeno = 1;
+
+SELECT * FROM notice;

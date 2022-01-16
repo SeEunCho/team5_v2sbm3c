@@ -31,7 +31,7 @@
 <body>
 <jsp:include page="../menu/top.jsp" />
  
-<DIV class='title_line'>공지사항 > ${noticetitle } 조회(수정)</DIV>
+<DIV class='title_line'>공지사항 > 수정</DIV>
 
 <DIV class='content_body'>
   <DIV id='panel_create' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; text-align: center;'>

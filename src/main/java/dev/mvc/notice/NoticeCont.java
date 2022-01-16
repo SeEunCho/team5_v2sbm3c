@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-
 @Controller
 public class NoticeCont {
     @Autowired
@@ -181,6 +180,24 @@ public class NoticeCont {
             mav.addObject("code", "delete_fail"); // request에 저장, request.setAttribute("code", "delete_fail")
         }
         mav.setViewName("/notice/msg"); // /WEB-INF/views/notice/msg.jsp
+
+        return mav;
+    }
+
+    // http://localhost:9091/contents/read.do
+    /**
+     * 조회
+     * 
+     * @return
+     */
+    @RequestMapping(value = "/notice/read.do", method = RequestMethod.GET)
+    public ModelAndView read(int noticeno) {
+        ModelAndView mav = new ModelAndView();
+
+        NoticeVO noticeVO = this.noticeProc.read(noticeno);
+        mav.addObject("noticeVO", noticeVO); // request.setAttribute("noticeVO", noticeVO);
+
+        mav.setViewName("/notice/read"); // /WEB-INF/views/notice/read.jsp
 
         return mav;
     }

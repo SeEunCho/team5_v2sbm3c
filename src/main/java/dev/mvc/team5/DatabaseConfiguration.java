@@ -18,11 +18,11 @@ import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
 @PropertySource("classpath:/application.properties")  // 설정 파일 위치
-<<<<<<< Updated upstream
+
 @MapperScan(basePackages= {"dev.mvc.team5", "dev.mvc.qna", "dev.mvc.qnacate", "dev.mvc.answer", "dev.mvc.member", "dev.mvc.faq", "dev.mvc.house",  "dev.mvc.admin"})
-=======
-@MapperScan(basePackages= {"dev.mvc.team5", "dev.mvc.qna", "dev.mvc.qnacate", "dev.mvc.answer", "dev.mvc.member", "dev.mvc.faq", "dev.mvc.notice", "dev.mvc.paging"})
->>>>>>> Stashed changes
+
+@MapperScan(basePackages= {"dev.mvc.team5", "dev.mvc.qna", "dev.mvc.qnacate", "dev.mvc.answer", "dev.mvc.member", "dev.mvc.faq", "dev.mvc.notice"})
+
 public class DatabaseConfiguration {
     
     @Autowired
