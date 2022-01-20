@@ -15,8 +15,8 @@
 <!-- Bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-<script src="https://maps.google.com/maps/api/js?key=AIzaSyB9MXxWL1I2d22VVQj7FzVCelxfZWBDsc8&sensor=flase" type="text/javascript"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=587a4e98e5eb5e4d4a5dd25e7ddda665&libraries=services"></script>
+<script src="https://maps.google.com/maps/api/js?key=이곳에API지도키넣기!!&sensor=flase" type="text/javascript"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=이곳에API지도키넣기!!&libraries=services"></script>
 
 <script src="/js/jquery.fn.gmap.js" type="text/javascript"></script>
 <script src="/js/jquery.ui.map.extensions.js" type="text/javascript"></script>

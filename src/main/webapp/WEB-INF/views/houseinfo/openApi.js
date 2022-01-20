@@ -16,7 +16,7 @@ $(document).ready(function() {
 
     var jsonList = ${jsonlist};
 
-    var url = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB9MXxWL1I2d22VVQj7FzVCelxfZWBDsc8&sensor=false';
+    var url = 'https://maps.googleapis.com/maps/api/geocode/json?key=이곳에API지도키넣기!!&sensor=false';
 
     // 다음 api 지오코딩 
     for (var i in jsonList) {

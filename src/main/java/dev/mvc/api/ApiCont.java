@@ -95,7 +95,7 @@ public class ApiCont {
         
         StringBuilder urlBuilder = new StringBuilder("http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev"); /*URL*/
         
-        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=2P4vHr1EqNHZQmmf7LsLCZ%2BgTxFBRst68xrJfk7hIAgCY6BHjDOEJkOQ45xWIAgndYBTIuiAZwyFMROd3vCPJQ%3D%3D"); /*Service Key*/
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=이곳에API지도키넣기!!"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
         urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("500", "UTF-8")); /*한 페이지 결과 수*/
         urlBuilder.append("&" + URLEncoder.encode("LAWD_CD","UTF-8") + "=" + URLEncoder.encode(regionCode, "UTF-8")); /*지역코드*/
