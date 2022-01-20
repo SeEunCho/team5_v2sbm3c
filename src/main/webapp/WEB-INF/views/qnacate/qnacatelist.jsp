@@ -221,8 +221,8 @@ function delete_qna_by_qcateno() {
       <label>담당 관리자 번호</label>
       <select name='adminid' id='adminid_create'>
         <option value='1' selected="selected">전체 관리자</option>
-        <option value='1'>상품관련 관리자</option>
-        <option value=''>홈페이지 관리자</option>
+        <option value='2'>상품관련 관리자</option>
+        <option value='3'>홈페이지 관리자</option>
       </select>
 
  <!--수정해야함!   <select name="qcateno"> <%-- db에서 동적으로 카테고리 선택 --%>
@@ -258,8 +258,8 @@ function delete_qna_by_qcateno() {
       <label>담당 관리자 번호</label>
       <select name='adminid' id='adminid_update'>
         <option value='1' selected="selected">전체 관리자</option>
-        <option value='1'>상품관련 관리자</option>
-        <option value='1'>홈페이지 관리자</option>
+        <option value='2'>상품관련 관리자</option>
+        <option value='3'>홈페이지 관리자</option>
       </select>
 
 

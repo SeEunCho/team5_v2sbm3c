@@ -9,8 +9,8 @@
       <span style='padding-left: 0.5%;'></span>
       <A class='menu_link'  href='/' >심슨's House</A><span class='top_menu_sep'> </span>  
  
-      <A class='menu_link'  href='/'>공지사항</A><span class='top_menu_sep'> </span>
-      <A class='menu_link'  href='/house/list.do'>주택정보 조회</A><span class='top_menu_sep'> </span>
+      <A class='menu_link'  href='/notice/list.do'>공지사항</A><span class='top_menu_sep'> </span>
+      <A class='menu_link'  href='/api/call.do'>주택정보 조회</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='/'>주택 추천</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='/'>챗봇 서비스</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='/trend/news.do'>트렌드 분석</A><span class='top_menu_sep'> </span>
@@ -29,7 +29,6 @@
         <c:when test="${sessionScope.id != null}"> <%-- 로그인 한 경우 --%>
            <c:choose>
                 <c:when test="${sessionScope.admin_flag == true}">  <%-- 관리자 로그인 --%>
-                  <A class='menu_link'  href='/member/list.do' >회원관리</A><span class='top_menu_sep'> </span>
                                  관리자 [ ${sessionScope.id } ] <A class='menu_link'  href='/member/logout.do' >Logout</A><span class='top_menu_sep'> </span> 
                 </c:when>
                 
@@ -53,9 +52,9 @@
                 <li><a href="/" class='link_menu_top'>홈페이지 관리</a>
                       <ul>
                           <li><a href='/member/list.do' class='link_menu_sub'>회원관리</a></li>
-                          <li><a href='/' class='link_menu_sub'>공지사항 관리</a></li>
+                          <li><a href='/notice/list.do' class='link_menu_sub'>공지사항 관리</a></li>
                           <li><a href='/qnacatelist' class='link_menu_sub'>QnA 관리</a></li>
-                          <li><a href='/' class='link_menu_sub'>주택매물 관리</a></li>
+                          <li><a href='/house/list.do' class='link_menu_sub'>주택매물 관리</a></li>
                       </ul>
                   </li>
               </ul>

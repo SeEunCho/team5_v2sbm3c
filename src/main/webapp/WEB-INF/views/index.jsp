@@ -16,13 +16,26 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="icon" href="/images/house_pavicon.png">
 
+<!-- Fotorama -->
+<link href="/fotorama/fotorama.css" rel="stylesheet">
+<script src="/fotorama/fotorama.js"></script>
+
 </head>
 <body>
 <jsp:include page="./menu/top.jsp" flush='false' />
   
-  <DIV style='width: 100%; margin: 30px auto; text-align: center;'>
-    <%-- /static/images/resort02.jpg --%>
-    <IMG src='/images/main_page.jpg' style='width: 50%;'>
+  <DIV class="container">
+        <div class="fotorama"data-autoplay="5000" data-nav="thumbs" data-ratio="800/520">
+            <img src="/fotorama/images/winter01.jpg">     
+            <img src="/fotorama/images/winter02.jpg">
+            <img src="/fotorama/images/winter03.jpg">
+            <img src="/fotorama/images/winter04.jpg">
+            <img src="/fotorama/images/winter05.jpg">
+            <img src="/fotorama/images/winter06.jpg">
+            <img src="/fotorama/images/winter07.jpg">
+            <img src="/fotorama/images/winter08.jpg">
+            <img src="/fotorama/images/winter09.jpg">        
+      </div>
   </DIV>
 
   
