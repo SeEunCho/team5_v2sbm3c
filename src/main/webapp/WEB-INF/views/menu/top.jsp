@@ -29,7 +29,7 @@
         <c:when test="${sessionScope.id != null}"> <%-- 로그인 한 경우 --%>
            <c:choose>
                 <c:when test="${sessionScope.admin_flag == true}">  <%-- 관리자 로그인 --%>
-                  <A class='menu_link'  href='/member/list.do' >회원관리</A><span class='top_menu_sep'> </span>
+                  <A class='menu_link'  href='/member/list_by_search_paging.do' >회원관리</A><span class='top_menu_sep'> </span>
                                  관리자 [ ${sessionScope.id } ] <A class='menu_link'  href='/member/logout.do' >Logout</A><span class='top_menu_sep'> </span> 
                 </c:when>
                 
