@@ -1,6 +1,8 @@
 package dev.mvc.house;
 
+import java.util.HashMap;
 import java.util.List;
+
 
 public interface HouseDAOInter {
 
@@ -31,5 +33,9 @@ public interface HouseDAOInter {
    * 삭제 처리
    */
   public int delete(int houseno);
+  
+  public List<HouseVO> getListWithFK (int adminid);
+  
+  public HouseVO getOneWithPK(int houseno);
 
 }
