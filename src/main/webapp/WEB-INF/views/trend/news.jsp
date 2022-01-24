@@ -385,7 +385,8 @@
   <jsp:include page="../menu/top.jsp" flush='false' />
 
   <DIV class='title_line'>
-    Trend 분석
+  <button type="button" class="btn btn-link" style='color: #2c3e50;' onclick="location.href='./news.do' ">News분석</button>
+  <button type="button" class="btn btn-link" style='color: #2c3e50;' onclick="location.href='./chart.do' ">통계분석</button>
   </DIV>
 
   <DIV class='content_body'>

@@ -20,9 +20,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/flatly/bootstrap.min.css" integrity="sha384-qF/QmIAj5ZaYFAeQcrQ6bfVMAh4zZlrGwTPY7T/M+iTTLJqJBJjwwnsE5Y0mV7QK" crossorigin="anonymous">
 <script type="text/javascript" src="https://www.google-analytics.com/analytics.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" integrity="sha384-7ynz3n3tAGNUYFZD3cWe5PDcE36xj85vyFkawcF6tIwxvIecqKvfwLiaFdizhPpN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" integrity="sha384-7ynz3n3tAGNUYFZD3cWe5PDcE36xj85vyFkawcF6tIwxvIecqKvfwLiaFdizhPpN" crossorigin="anonymous"> -->
 
 <style>
   
@@ -43,6 +43,19 @@
 
   <DIV class='content_body'>
 
+    <ASIDE class="aside_left">
+      <DIV style="text-align: letf;">
+      <form name='frm' id='frm' method='get' action='./list_by_search_paging.do'>
+        <input class="form-control form-control-sm" type="text" name='word' id='word' value='${param.word }' style='width: 150px; display: inline;'>
+        <button type='submit' class="btn btn-outline-info  btn-sm" >검색</button>
+        <c:if test="${param.word.length() > 0 }">
+          <button type='button' class="btn btn-outline-info btn-sm" onclick="location.href='./list_by_search_paging.do?&word='">검색 취소</button>  
+        </c:if>
+      </form>
+      </div>   
+      
+    </ASIDE>
+
     <ASIDE class="aside_right">
       <A href="javascript:location.reload();">새로고침</A>
       <span class='menu_divide' >│</span> 
@@ -50,7 +63,7 @@
       <!-- <span class='menu_divide' >│</span>
       <A href='./create.do'>탈퇴회원</A> -->
     </ASIDE> 
-   
+
     <div class='menu_line'></div>
     
     <table class="table table-hover" style='width: 100%;'>
@@ -129,6 +142,11 @@
     </c:forEach>
     
   </TABLE>
+
+  <!-- 페이지 목록 출력 부분 시작  -->
+  <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
+  <!-- 페이지 목록 출력 부분 종료  -->
+
 </div>
 
   <DIV class='bottom_menu'>

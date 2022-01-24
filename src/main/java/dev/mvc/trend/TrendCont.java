@@ -22,4 +22,12 @@ public class TrendCont {
         return mav;
     }
     
+ // http://localhost:9091/trend/chart.do
+    @RequestMapping(value = { "/trend/chart.do" }, method = RequestMethod.GET)
+    public ModelAndView chart() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("/trend/chart"); // /WEB-INF/views/trend/news.jsp
+        return mav;
+    }
+    
 }

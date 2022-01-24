@@ -112,6 +112,10 @@ public interface MemberProcInter {
     
     /**
      * 페이지 목록 문자열 생성, Box 형태
+     * @param search_count 검색 갯수
+     * @param now_page 현재 페이지, now_page는 1부터 시작
+     * @param word 검색어
+     * @return
      */
     public String pagingBox(int search_count, int now_page, String word);
 
