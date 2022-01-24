@@ -42,4 +42,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE houseno=#{houseno}
   </delete>  
   
+  <select id="getListWithFK" resultType="dev.mvc.house.HouseVO" parameterType="int">
+          select houseno, nomination, area, terrain, price, hdate, likes, loca, hname, adminid
+          from house
+          where adminid=#{adminid}
+  </select>
+  
+  <select id="getOneWithPK" resultType="dev.mvc.house.HouseVO" parameterType="int">
+          select houseno, nomination, area, terrain, price, hdate, likes, loca, hname, adminid
+          from house 
+          where houseno=#{houseno}
+  </select>
+  
 </mapper>

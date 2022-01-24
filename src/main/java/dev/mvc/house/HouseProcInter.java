@@ -2,6 +2,7 @@ package dev.mvc.house;
 
 import java.util.List;
 
+
 public interface HouseProcInter {
 
     
@@ -31,5 +32,9 @@ public interface HouseProcInter {
      * 삭제 처리
      */
     public int delete(int houseno);
+    
+    public List<HouseVO> getListWithFK (int adminid);
+
+    public HouseVO getOneWithPK(int houseno);
 
   }
