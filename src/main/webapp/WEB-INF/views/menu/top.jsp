@@ -1,6 +1,22 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script type="text/javascript">
+        window.onload = function() {
+
+        }
+
+        function chatting(){
+          var url = 'http://127.0.0.1:8000/ais/chatbot/chatting/';
+          var win = window.open(url, '챗봇', 'width=700px, height=630px');
+
+          var x = (screen.width - 700) / 2;
+          var y = (screen.height - 630) / 2;
+
+          win.moveTo(x, y); // 화면 중앙으로 이동
+        }
+</script>
+
 <DIV class='container_main'> 
   <%-- 화면 상단 메뉴 --%>
   <DIV class='top_img'>
@@ -12,8 +28,9 @@
       <A class='menu_link'  href='/notice/list.do'>공지사항</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='/api/call.do'>주택정보 조회</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='/'>주택 추천</A><span class='top_menu_sep'> </span>
-      <A class='menu_link'  href='/'>챗봇 서비스</A><span class='top_menu_sep'> </span>
+      <A class='menu_link'  href="javascript: chatting()">챗봇 서비스</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='/trend/news.do'>트렌드 분석</A><span class='top_menu_sep'> </span>
+      <A class='menu_link'  href='/trend/chart.do'>통계분석</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='/faqlist'>자주묻는 질문(FAQ)</A><span class='top_menu_sep'> </span>
 
       <c:choose>

@@ -1,5 +1,5 @@
 package dev.mvc.notice;
-
+import java.util.Date;
 
 /*
 CREATE TABLE notice(
