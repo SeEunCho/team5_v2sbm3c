@@ -2,6 +2,8 @@ package dev.mvc.notice;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -89,18 +91,32 @@ public class NoticeCont {
      * @return
      */
     @RequestMapping(value = "/notice/read_update.do", method = RequestMethod.GET)
-    public ModelAndView read_update(int noticeno) {
+    public ModelAndView read_update(int noticeno,  HttpSession session) {
         // request.setAttribute("noticeno", int noticeno) 작동 안됨.
-
+        boolean admin_flag = false;
+        
         ModelAndView mav = new ModelAndView();
+        
+        try {
+            admin_flag = (boolean)session.getAttribute("admin_flag");
+        } catch(NullPointerException e) {
+            admin_flag = false;
+        } 
+        
+        if (admin_flag) {
+            NoticeVO noticeVO = this.noticeProc.read(noticeno);
+            mav.addObject("noticeVO", noticeVO); // request 객체에 저장
 
-        NoticeVO noticeVO = this.noticeProc.read(noticeno);
-        mav.addObject("noticeVO", noticeVO); // request 객체에 저장
+            List<NoticeVO> list = this.noticeProc.list();
+            mav.addObject("list", list); // request 객체에 저장
 
-        List<NoticeVO> list = this.noticeProc.list();
-        mav.addObject("list", list); // request 객체에 저장
-
-        mav.setViewName("/notice/read_update"); // /WEB-INF/views/notice/read_update.jsp
+            mav.setViewName("/notice/read_update"); // /WEB-INF/views/notice/read_update.jsp
+        } else{
+            mav.addObject("code", "update_admin_fail"); // request에 저장, request.setAttribute("code", "login_fail_msg")
+            mav.setViewName("/notice/msg"); // /WEB-INF/views/notice/msg.jsp
+        }
+        
+        
         return mav; // forward
     }
 
@@ -142,16 +158,29 @@ public class NoticeCont {
      * @return
      */
     @RequestMapping(value = "/notice/read_delete.do", method = RequestMethod.GET)
-    public ModelAndView read_delete(int noticeno) {
+    public ModelAndView read_delete(int noticeno, HttpSession session) {
+        boolean admin_flag = false;
         ModelAndView mav = new ModelAndView();
+        
+        try {
+            admin_flag = (boolean)session.getAttribute("admin_flag");
+        } catch(NullPointerException e) {
+            admin_flag = false;
+        } 
+        
+        if (admin_flag) {
+            NoticeVO noticeVO = this.noticeProc.read(noticeno); // 삭제할 자료 읽기
+            mav.addObject("noticeVO", noticeVO); // request 객체에 저장
 
-        NoticeVO noticeVO = this.noticeProc.read(noticeno); // 삭제할 자료 읽기
-        mav.addObject("noticeVO", noticeVO); // request 객체에 저장
+            List<NoticeVO> list = this.noticeProc.list();
+            mav.addObject("list", list); // request 객체에 저장
 
-        List<NoticeVO> list = this.noticeProc.list();
-        mav.addObject("list", list); // request 객체에 저장
-
-        mav.setViewName("/notice/read_delete"); // read_delete.jsp
+            mav.setViewName("/notice/read_delete"); // read_delete.jsp
+        }else{
+            mav.addObject("code", "delete_admin_fail"); // request에 저장, request.setAttribute("code", "login_fail_msg")
+            mav.setViewName("/notice/msg"); // /WEB-INF/views/notice/msg.jsp
+        }
+        
         return mav;
     }
 
@@ -184,7 +213,7 @@ public class NoticeCont {
         return mav;
     }
 
-    // http://localhost:9091/contents/read.do
+    // http://localhost:9091/notice/read.do
     /**
      * 조회
      * 

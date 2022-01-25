@@ -3,16 +3,16 @@
 
 <script type="text/javascript">
         window.onload = function() {
-
+            
         }
-
+        
         function chatting(){
           var url = 'http://127.0.0.1:8000/ais/chatbot/chatting/';
           var win = window.open(url, '챗봇', 'width=700px, height=630px');
-
+          
           var x = (screen.width - 700) / 2;
           var y = (screen.height - 630) / 2;
-
+          
           win.moveTo(x, y); // 화면 중앙으로 이동
         }
 </script>
@@ -24,7 +24,6 @@
     <NAV class='top_menu'>
       <span style='padding-left: 0.5%;'></span>
       <A class='menu_link'  href='/' >심슨's House</A><span class='top_menu_sep'> </span>  
- 
       <A class='menu_link'  href='/notice/list.do'>공지사항</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='/api/call.do'>주택정보 조회</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='/'>주택 추천</A><span class='top_menu_sep'> </span>
