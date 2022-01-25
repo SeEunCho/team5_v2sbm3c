@@ -63,9 +63,9 @@
 
     <DIV id='panel' style='display: none; margin: 10px auto; width: 90%;'></DIV>
 
-    <form id='frm' name='frm' action='/recommend_house/form4' method='GET'>
-        <input type='hidden' name='step1' value='{{ step1 }}'>
-        <input type='hidden' name='step2' value='{{ step2 }}'>
+    <form id='frm' name='frm' action='/recommend_house/form4.do' method='GET'>
+        <input type='hidden' name='step1' value='${param.step1 }'>
+        <input type='hidden' name='step2' value='${param.step2 }''>
         
         <br>
         <TABLE style='margin: 0px auto;'>

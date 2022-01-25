@@ -23,7 +23,7 @@ public class RecommendCont {
     }
 
     // http://localhost:9091/recommend/form1.do
-    @RequestMapping(value = {"/recommend/form1"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/recommend/form1.do"}, method = RequestMethod.GET)
     public ModelAndView form1() {
       ModelAndView mav = new ModelAndView();
       mav.setViewName("/recommend/form1");  // /WEB-INF/views/recommend/recommend_house/form1.jsp

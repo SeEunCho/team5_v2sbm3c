@@ -29,7 +29,27 @@
                     alert('관심 분야의 이미지를 선택해주세요.');
                 }
             });       
-            $('#btn_close').on('click', function() { window.close(); });      // 윈도우 닫기
+            $('#btn_close').on('click', function() { window.close(); });
+            
+            function start() {
+                var params = $('#frm').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
+                // alert('params: ' + params);  // 수신 데이터 확인
+                $.ajax({
+                  url: 'http://localhost:8000/recommend_house/form1/',  // Spring Boot -> Django 호출
+                  type: 'get',  // get or post
+                  cache: false, // 응답 결과 임시 저장 취소
+                  async: true,  // true: 비동기 통신
+                  dataType: 'json', // 응답 형식: json, html, xml...
+                  data: params,      // 데이터
+                  success: function(rdata) { // 응답이 온경우
+                	  console.log('-> ' + rdata.msg);  // 보통 DIV, SPAN등에 출력
+                    } 
+                  },
+                  // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우
+                  error: function(request, status, error) { // callback 함수
+                    console.log(error);
+                  }
+                });
         });
     </script>
 
@@ -63,24 +83,24 @@
 
     <DIV id='panel' style='display: none; margin: 10px auto; width: 90%;'></DIV>
 
-    <form id='frm' name='frm' action='recommend/form2' method='GET'>
+    <form id='frm' name='frm' action='recommend/form2.do' method='GET'>
         <br>
         <TABLE style='margin: 0px auto;'>
             <TR>
                 <TD class='td_image'>
-                    <img id='img1' src="{% static '/recommend_house/images/v11.jpg' %}" style='float:left; height: 200px'>
+                    <img id='img1' src="{% static '/recommend_images/v11.jpg' %"} style='float:left; height: 200px'>
                 </TD>
                 <TD class='td_image'>
-                    <img id='img2' src="{% static '/recommend_house/images/v21.jpg' %}" style='float:left; height: 200px'>
+                    <img id='img2' src="{% static '/recommend_images/v21.jpg' %}" style='float:left; height: 200px'>
                 </TD>
                 <TD class='td_image'>
-                    <img id='img3' src="{% static '/recommend_house/images/v31.jpg' %}" style='float:left; height: 200px'>
+                    <img id='img3' src="{% static '/recommend_images/v31.jpg' %}" style='float:left; height: 200px'>
                 </TD>
                 <TD class='td_image'>
-                    <img id='img4' src="{% static '/recommend_house/images/v41.jpg' %}" style='float:left; height: 200px'>
+                    <img id='img4' src="{% static '/recommend_images/v41.jpg' %}" style='float:left; height: 200px'>
                 </TD>
                 <TD class='td_image'>
-                    <img id='img5' src="{% static '/recommend_house/images/v51.jpg' %}" style='float:left; height: 200px'>
+                    <img id='img5' src="{% static '/recommend_images/v51.jpg' %}" style='float:left; height: 200px'>
                 </TD>
             </TR>
             <TR>

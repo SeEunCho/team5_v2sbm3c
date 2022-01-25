@@ -63,8 +63,8 @@
 
     <DIV id='panel' style='display: none; margin: 10px auto; width: 90%;'></DIV>
 
-    <form id='frm' name='frm' action='/recommend/form3' method='GET'>
-        <input type='hidden' name='step1' value='{{ step1 }}'>
+    <form id='frm' name='frm' action='/recommend/form3.do' method='GET'>
+        <input type='hidden' name='step1' value=='${param.step1}>
         <br>
         <TABLE style='margin: 0px auto;'>
             <TR>
