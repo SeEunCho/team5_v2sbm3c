@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -99,10 +100,22 @@ public class MemberProc implements MemberProcInter {
         return id;
     }
     
-    
-    //비밀번호 찾기 이메일발송
+    // 인증키 생성
     @Override
-    public void sendEmail(MemberVO memberVO, String div) throws Exception {
+    public String create_key() throws Exception {
+        String key = "";
+        Random rd = new Random();
+
+        for (int i = 0; i < 8; i++) {
+            key += rd.nextInt(10);
+        }
+        return key;
+    }
+    
+    //이메일 인증코드 발송
+    @Override
+    public void emailcheck(String div, String sm_email, String auth_key) throws Exception {
+        
         // Mail Server 설정
         String charSet = "utf-8";
         String hostSMTP = "smtp.gmail.com"; 
@@ -114,9 +127,61 @@ public class MemberProc implements MemberProcInter {
         String fromName = "team5";
         String subject = "";
         String msg = "";
+        
+        // 회원가입 메일 내용
+        if(div.equals("join")) {
+            subject = "구해줘!홈즈 회원가입 인증 메일입니다.";
+            msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
+            msg += "<h3 style='color: blue;'>";
+            msg += "회원가입 인증번호 입니다.</h3>";
+            msg += "<p>[인증번호] : ";
+            msg += auth_key + "</p> <br/> 인증번호 확인란에 기입해주십시오. </div>";
+        }
 
+        // 받는 사람 E-Mail 주소
+        String mail = sm_email;
+        String name = sm_email;
+        try {
+            HtmlEmail email = new HtmlEmail();
+            email.setDebug(true);
+            email.setCharset(charSet);
+            email.setSSL(true);
+            email.setHostName(hostSMTP);
+            email.setSmtpPort(465); 
+
+            email.setAuthentication(hostSMTPid, hostSMTPpwd);
+            email.setTLS(true);
+            email.addTo(mail, name);
+            email.setFrom(fromEmail, fromName, charSet);
+            email.setSubject(subject);
+            email.setHtmlMsg(msg);
+            email.send();
+        } catch (Exception e) {
+            System.out.println("메일발송 실패 : " + e);
+        }
+        
+    }
+
+    
+    //비밀번호 찾기 이메일발송
+    @Override
+    public void sendEmail(MemberVO memberVO, String div) throws Exception {
+        
+        // Mail Server 설정
+        String charSet = "utf-8";
+        String hostSMTP = "smtp.gmail.com"; 
+        String hostSMTPid = "team5manager0@gmail.com";
+        String hostSMTPpwd = "admin54321!";
+
+        // 보내는 사람 EMail, 제목, 내용
+        String fromEmail = "team5manager0@gmail.com";
+        String fromName = "team5";
+        String subject = "";
+        String msg = "";
+        
+        // 회원가입 메일 내용
         if(div.equals("find_pw")) {
-            subject = "주택 매물시스템 임시 비밀번호 입니다.";
+            subject = "구해줘!홈즈 임시 비밀번호 입니다.";
             msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
             msg += "<h3 style='color: blue;'>";
             msg += memberVO.getId() + "님의 임시 비밀번호 입니다. 비밀번호를 변경하여 사용하세요.</h3>";

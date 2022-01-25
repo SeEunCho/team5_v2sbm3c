@@ -94,6 +94,15 @@ public interface MemberProcInter {
      */
     public String find_id(String email);
     
+    /**
+     * 인증키생성
+     */
+    public String create_key() throws Exception;
+    
+    /**
+     * 이메일 인증코드 발송
+     */
+    public void emailcheck(String div, String sm_email, String auth_key) throws Exception;
     
     /**
      * 이메일발송
@@ -118,6 +127,7 @@ public interface MemberProcInter {
      * @return
      */
     public String pagingBox(int search_count, int now_page, String word);
+
 
     
 }
