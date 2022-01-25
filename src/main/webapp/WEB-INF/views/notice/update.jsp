@@ -12,7 +12,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>공지사항 수정</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
 
@@ -46,11 +46,12 @@
   http://localhost:9091/notice/update.do
   action='./update.do' -> ./: http://localhost:9091/notice 현재 폴더
   -->
+  
   <FORM name='frm' method='POST' action='./update.do' class="form-horizontal">
    <div class="form-group">
        <label class="control-label col-md-2">관리자번호</label>
        <div class="col-md-10">
-         <input type='text' name='adminid' value='' required="required" placeholder="1"
+         <input type='text' name='adminid' value='' required="required" placeholder="관리자번호"
                     autofocus="autofocus" class="form-control" style='width: 50%;'>
        </div>
     </div>

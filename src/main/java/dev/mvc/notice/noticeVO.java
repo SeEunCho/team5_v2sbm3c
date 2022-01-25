@@ -1,7 +1,7 @@
 package dev.mvc.notice;
 
 import java.util.Date;
-import lombok.Data;
+
 
 /*
 CREATE TABLE notice(
