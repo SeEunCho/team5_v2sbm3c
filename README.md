@@ -21,7 +21,7 @@
 >- 조세은: [dnebpetal@kakao.com](dnebpetal@kakao.com)
 >- 차대현: 메일주소  
 >- 최용석: [dydtjr1717@gmail.com](dydtjr1717@gmail.com)
->- 하지희: 메일주소  
+>- 하지희: [quakquak622@naver.com](quakquak622@naver.com)
 
 
 ## Table of Contents
