@@ -16,6 +16,7 @@ COMMENT ON COLUMN faq.title is 'FAQ제목';
 COMMENT ON COLUMN faq.text is 'FAQ본문';
 COMMENT ON COLUMN faq.Cdate is '생성일자';
 COMMENT ON COLUMN faq.adminid is '관리자번호';
+
 DROP SEQUENCE faq_seq;
 CREATE SEQUENCE faq_seq;
   START WITH 1             

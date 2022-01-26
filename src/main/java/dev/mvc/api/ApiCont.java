@@ -1,8 +1,8 @@
 package dev.mvc.api;
 
-import java.io.BufferedReader;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.w3c.dom.Document;
@@ -20,12 +21,22 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import dev.mvc.apihouse.ApihouseProcInter;
+import dev.mvc.apihouse.ApihouseVO;
+
+
 @Controller
 public class ApiCont {
     
     @Autowired
     @Qualifier("dev.mvc.api.ApiProc")
     private ApiProc apiProc;
+    
+    @Autowired
+    @Qualifier("dev.mvc.apihouse.ApihouseProc")
+    private ApihouseProcInter apihouseProc;
     
 
     /**
@@ -44,10 +55,143 @@ public class ApiCont {
         } else {
             model.addAttribute("list", list);
         }
-        return "houseinfo/getinfo";
+        // "houseinfo/getinfo";
+        return "index";
     }
     
-    // 사용자가 form에서 '구' + 거래일자 선택하여 submit 하면, OpenApi통신 및 결과 포워딩.
+    // 마커 or list에서 하나 클릭시에 상세조회 할 수 있는 컨트롤러
+    @RequestMapping(value = "/api/{houseno}/read.do", method = RequestMethod.GET)
+    public String readOne(@PathVariable String houseno, Model model) {
+        
+        int pk = Integer.parseInt(houseno);
+        
+        ApihouseVO apihouseVO = null;
+        apihouseVO = apihouseProc.getHouseByPk(pk);
+        //ObjectMapper mapper = new ObjectMapper();
+        
+        if(apihouseVO == null) {
+            System.out.println("객체 조회가 되지 않습니다.");
+        }
+        
+        model.addAttribute("apihouseVO", apihouseVO);
+        
+//        try {
+//            String tempVO = mapper.writeValueAsString(apihouseVO);
+//            model.addAttribute("apihouseVO", tempVO);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+        return "houseinfo/readApiHouse";
+    }
+    
+    
+    // 사용자 입력값에 대해 데이터베이스에 검색하여 관련 데이터 전달하는 컨트롤러 
+    // 사용자가 map으로 볼 때 해당 컨트롤러가 작동.
+    @RequestMapping(value = "/api/call.do", method = RequestMethod.POST)
+    public String getApiProc(String regionCode, String year, String month, Model model) {
+         
+        System.out.println("api/call.do 호출됨");
+        ApiVO apiVO = null;
+        List<ApiVO> list = null;
+        List<ApihouseVO> houseList = null;
+        HashMap<Object, Object> map = new HashMap<Object, Object>();
+        ObjectMapper mapper = new ObjectMapper();
+        
+        // 사용자 입력을 DB 쿼리를 위해 맵에 저장
+        map.put("rcode", Integer.parseInt(regionCode));
+        map.put("year", Integer.parseInt(year));
+        map.put("month", Integer.parseInt(month));
+        
+        // 지역코드 + 이름 객체 (1st), form에 넘길 apiVO list (2nd), DB에서 가져온 공공데이터포털 거래정보(3rd)
+        list = apiProc.getAllRegion();
+        apiVO = apiProc.getOneByRegionCode(regionCode);
+        houseList = apihouseProc.gethousesByUserInput(map);
+        
+        System.out.println();
+        
+        if (apiVO == null) {
+            System.out.println("값이 들어오지 않습니다 ApiVO");
+        }
+        
+        if(list == null) {
+            System.out.println("값이 들어오지 않습니다 APIVo LIST");
+        } 
+        
+        if (houseList ==  null) {
+            System.out.println("값이 들어오지 않습니다 ApihouseVO LIST");
+        }      
+
+        try {
+            // jackson library 사용하여 java Object(List<ApihouseVO> houseList) -> json format(String.class) parsing 
+            String jsonFromObj = mapper.writeValueAsString(houseList);
+            model.addAttribute("jsonlist", jsonFromObj);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        model.addAttribute("singleApiVO", apiVO);
+        model.addAttribute("year", year);
+        model.addAttribute("month", month);
+        model.addAttribute("list", list);
+        model.addAttribute("length", houseList.size());
+        
+        return "houseinfo/postinfo";
+    }
+    
+    // 사용자가 List로 볼 때 해당 컨트롤러가 작동.
+    // 컨트롤러 로직은 getApiProc 와 동일. view 경로만 다름!
+    @RequestMapping(value = "/api/call_list.do", method = RequestMethod.GET)
+    public String getApiProc_List(String regionCode, String year, String month, Model model) {
+         
+        System.out.println("api/call.do 호출됨");
+        ApiVO apiVO = null;
+        List<ApiVO> list = null;
+        List<ApihouseVO> houseList = null;
+        HashMap<Object, Object> map = new HashMap<Object, Object>();
+        
+        // 사용자 입력을 DB 쿼리를 위해 맵에 저장
+        map.put("rcode", Integer.parseInt(regionCode));
+        map.put("year", Integer.parseInt(year));
+        map.put("month", Integer.parseInt(month));
+        
+        // 지역코드 + 이름 객체 (1st), form에 넘길 apiVO list (2nd), DB에서 가져온 공공데이터포털 거래정보(3rd)
+        list = apiProc.getAllRegion();
+        apiVO = apiProc.getOneByRegionCode(regionCode);
+        houseList = apihouseProc.gethousesByUserInput(map);
+        
+        System.out.println();
+        
+        if (apiVO == null) {
+            System.out.println("값이 들어오지 않습니다 ApiVO");
+        }
+        
+        if(list == null) {
+            System.out.println("값이 들어오지 않습니다 APIVo LIST");
+        } 
+        
+        if (houseList ==  null) {
+            System.out.println("값이 들어오지 않습니다 ApihouseVO LIST");
+        }      
+        
+        model.addAttribute("singleApiVO", apiVO);
+        model.addAttribute("year", year);
+        model.addAttribute("month", month);
+        model.addAttribute("list", list);
+        model.addAttribute("length", houseList.size());
+        model.addAttribute("houseList", houseList);
+        
+        return "houseinfo/postinfolist";
+    }
+    
+    
+    
+    
+   
+    
+    // 해당 컨트롤러를 db 저장용 open api 통신 컨트롤러로 구현함.
+    // 관리자가 form에서 '구' + 거래일자 선택하여 submit 하면, OpenApi통신 및 결과 DB에 저장.
     @RequestMapping(value = "/api/call_do", method = RequestMethod.POST)
     public String fowrdToGet(String regionCode, String year, String month, Model model) {
          
@@ -55,7 +199,7 @@ public class ApiCont {
         ApiVO apiVO = null;
         List<ApiVO> list = null;
         String date = year + month;
-        
+        System.out.println(regionCode + date);
         list = apiProc.getAllRegion();
         apiVO = apiProc.getOneByRegionCode(regionCode);
         
@@ -81,8 +225,11 @@ public class ApiCont {
            System.out.println("개발자는 예외처리하세요.");
         }         
         
-        return "houseinfo/postinfo";
+        return "houseinfo/postinfo3";
     }
+    
+    
+    
     
     
     
@@ -91,19 +238,23 @@ public class ApiCont {
     
     
     //  ============ 내부 구현 methods (below)    
+    
+    
     private String getOpenApiUrl(String regionCode, String date) throws Exception {
         
         StringBuilder urlBuilder = new StringBuilder("http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev"); /*URL*/
         
-        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=이곳에API지도키넣기!!"); /*Service Key*/
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=2P4vHr1EqNHZQmmf7LsLCZ%2BgTxFBRst68xrJfk7hIAgCY6BHjDOEJkOQ45xWIAgndYBTIuiAZwyFMROd3vCPJQ%3D%3D"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
-        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("500", "UTF-8")); /*한 페이지 결과 수*/
+        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("50", "UTF-8")); /*한 페이지 결과 수*/
         urlBuilder.append("&" + URLEncoder.encode("LAWD_CD","UTF-8") + "=" + URLEncoder.encode(regionCode, "UTF-8")); /*지역코드*/
         urlBuilder.append("&" + URLEncoder.encode("DEAL_YMD","UTF-8") + "=" + URLEncoder.encode(date, "UTF-8")); /*계약월*/
         
         return urlBuilder.toString();
         
     }
+    
+    
  
     // jSON 객체 LIST 를 tostring 함수로 문자열 화 하여 리턴하는 함수, 컨트롤러의 Model 객체에 담김
     private String parseDocument(String url, Model model) throws Exception {
@@ -144,10 +295,14 @@ public class ApiCont {
                 partAddress.append(getTagValue("법정동", el) + " " + getTagValue("아파트", el));
                 
                 tempJson.put("fullAddr", fullAddress.toString());
-                tempJson.put("partAddr", partAddress.toString());
+                tempJson.put("name", partAddress.toString());
                 tempJson.put("cyear", getTagValue("건축년도", el));
                 tempJson.put("amount", getTagValue("거래금액", el));
                 tempJson.put("area", getTagValue("전용면적", el));
+                tempJson.put("rcode", getTagValue("지역코드", el));
+                tempJson.put("year", getTagValue("년", el));
+                tempJson.put("month", getTagValue("월", el));
+                
 
             }          
             json.add(tempJson);
@@ -155,6 +310,7 @@ public class ApiCont {
         model.addAttribute("length", json.size());
         return json.toString();
     }
+    
     
     //xml 객체에서 tag 이름으로 value 얻어오는 사용자 정의 메소드
     private String getTagValue(String tag, Element element) {

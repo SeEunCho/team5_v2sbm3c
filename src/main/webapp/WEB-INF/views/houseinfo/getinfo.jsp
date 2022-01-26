@@ -15,12 +15,13 @@
 <!-- Bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-<script src="https://maps.google.com/maps/api/js?key=이곳에API지도키넣기!!&sensor=flase" type="text/javascript"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=이곳에API지도키넣기!!&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=587a4e98e5eb5e4d4a5dd25e7ddda665&libraries=services"></script>
 
 <script src="/js/jquery.fn.gmap.js" type="text/javascript"></script>
 <script src="/js/jquery.ui.map.extensions.js" type="text/javascript"></script>
+
 <script type="text/javascript">
+
 $(function () {
     var container = document.getElementById('map');
     var options = {
@@ -67,7 +68,7 @@ $(function () {
 
  <div id="panel_search" style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; text-align: center;'>
 
-     <form id="frm_search" name="frm_search" method="POST" action="/api/call_do">
+     <form id="frm_search" name="frm_search" method="POST" action="/api/call.do">
      <input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }"> 
 
      <label>지역 선택</label>
@@ -80,25 +81,22 @@ $(function () {
 
       <label>년도 선택</label>
       <select name='year' id='select_year'>
-        <option value='2017' selected="selected">2017</option>
-        <option value='2018'>2018</option>
-        <option value='2019'>2019</option>
-        <option value='2020'>2020</option>
+        <option value='2020' selected="selected">2020</option>
         <option value='2021'>2021</option>        
       </select>
 
 
       <label>월 선택</label>
       <select name='month' id='select_month'>
-        <option value='01' selected="selected">1월</option>
-        <option value='02'>2월</option>
-        <option value='03'>3월</option>
-        <option value='04'>4월</option>
-        <option value='05'>5월</option>
-        <option value='06'>6월</option>
-        <option value='07'>7월</option>
-        <option value='08'>8월</option>
-        <option value='09'>9월</option>
+        <option value='1' selected="selected">1월</option>
+        <option value='2'>2월</option>
+        <option value='3'>3월</option>
+        <option value='4'>4월</option>
+        <option value='5'>5월</option>
+        <option value='6'>6월</option>
+        <option value='7'>7월</option>
+        <option value='8'>8월</option>
+        <option value='9'>9월</option>
         <option value='10'>10월</option>
         <option value='11'>11월</option>
         <option value='12'>12월</option>
