@@ -53,7 +53,6 @@
  
   <DIV class='title_line'>
     ${title}
-    ${memberVO.memberid}
   </DIV>
 
   <DIV class='content_body'>
