@@ -55,6 +55,8 @@
     padding: 0px 20px;
     border: 1px solid lightgray;
     outline: none;
+    font-family: Tahoma;
+    font-weight: bold;
   }
 
   .login_pw {
@@ -70,6 +72,9 @@
     padding: 0px 20px;
     border: 1px solid lightgray;
     outline: none;
+    font-family: Tahoma;
+    font-weight: bold;
+    
   }
 
   .login_etc {

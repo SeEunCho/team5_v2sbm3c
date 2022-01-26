@@ -48,6 +48,16 @@
           <LI class='li_none'>
             <span class="span_fail">[${noticeVO.noticetitle }] 공지사항 삭제에 실패했습니다.</span>
           </LI>                                                                      
+        </c:when>
+        <c:when test="${code == 'update_admin_fail'}"> <%-- Java if --%>
+          <LI class='li_none'>
+            <span class="span_fail">관리자만 수정 가능합니다.</span>
+          </LI>                                                                      
+        </c:when> 
+        <c:when test="${code == 'delete_admin_fail'}"> <%-- Java if --%>
+          <LI class='li_none'>
+            <span class="span_fail">관리자만 삭제 가능합니다.</span>
+          </LI>                                                                      
         </c:when> 
         <c:otherwise>
           <LI class='li_none_left'>

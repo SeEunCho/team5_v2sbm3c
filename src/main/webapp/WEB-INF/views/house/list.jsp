@@ -30,31 +30,8 @@
 
 <DIV class='content_body'>
   <DIV id='panel_create' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; text-align: center;'>
-    <FORM name='frm_create' id='frm_create' method='POST' action='./create.do'>
-      <label>주택명</label>
-      <input type='text' name='hname' value='' required="required" style='width: 60%;'
-                 autofocus="autofocus">
-    <div class="form-group">
-      <label>가격</label>
-      <input type='number' name='price' value='' required="required" style='width: 60%;'
-                 autofocus="autofocus">
-                
-       <div class="form-group">
-       <label>지목</label>
-         <input type='text' name='nomination' value='nomi' required="required"
-                    autofocus="autofocus" style='width: 60%;'>
-       <div class="form-group">
-       <label>크기</label>
-         <input type='text' name='area' value='area' required="required"
-                    autofocus="autofocus" style='width: 60%;'>
-       <div class="form-group">             
-       <label>위치</label>
-         <input type='text' name='loca' value='loca' required="required"
-                    autofocus="autofocus"  style='width: 60%;'>
-    </div>         
-       
-      <button type="submit" id='submit' class='btn btn-primary btn-xs' style="height: 22px; margin-bottom: 3px;">등록</button>
-      <button type="button" onclick="cancel();" class='btn btn-primary btn-xs' style="height: 22px; margin-bottom: 3px;">취소</button>
+    <FORM name='frm_create' id='frm_create' method='POST' action='./create.do'>        
+       <A href="./create.do?houseno=${houseno }" title="등록"><span class='btn btn-primary btn-xs' style="height: 22px; margin-bottom: 3px;">등록하기</button></span></A>
     </FORM>
   </DIV>
     
@@ -71,6 +48,8 @@
     <TR>
       <TH class="th_bs">주택명</TH>
       <TH class="th_bs">가격</TH>
+      <TH class="th_bs">지목</TH>
+      <TH class="th_bs">크기</TH>
       <TH class="th_bs">생성일</TH>
       <TH class="th_bs">기타</TH>
     </TR>
@@ -84,12 +63,14 @@
       <c:set var="hname" value="${houseVO.hname }" />
       <c:set var="hdate" value="${houseVO.hdate.substring(0, 10) }" />
       <c:set var="price" value="${houseVO.price }" />
+      <c:set var="area" value="${houseVO.area }" />
+      <c:set var="nomination" value="${houseVO.nomination }" />
       <TR>
-        <TD class="td_bs_left"><A href="../house/list_by_houseno.do?houseno=${houseno }">${hname }</A></TD>        
+        <TD class="td_bs_left"><A href="/house/${houseno }/read.do">${hname }</A></TD>        
         <TD class="td_bs">${price }</TD>
+        <TD class="td_bs">${nomination }</TD>
+        <TD class="td_bs">${area }</TD>
         <TD class="td_bs">${hdate}</TD>
-        <TD class="td_bs">
-        </TD>   
         
         <TD class="td_bs">
           <A href="./read_update.do?houseno=${houseno }" title="수정"><span class="glyphicon glyphicon-pencil"></span></A>

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -86,7 +87,7 @@ public class MemberCont {
     public ModelAndView create(MemberVO memberVO){
       ModelAndView mav = new ModelAndView();
       
-      // System.out.println(memberVO.toString());
+      System.out.println(memberVO.toString());
       // System.out.println("id: " + memberVO.getId());
       
       memberVO.setGrade(1); // 기본 회원 가입 등록 1 지정
@@ -111,6 +112,16 @@ public class MemberCont {
       // mav.addObject("cnt", 0);              // 가입 실패 test용
       
       return mav;
+    }
+    
+    // 이메일 인증
+    @ResponseBody
+    @RequestMapping(value = "/member/mail_auth.do", method = RequestMethod.GET)
+    public String mailCheck(@RequestParam("sm_email") String sm_email) throws Exception{
+        String auth_key = memberProc.create_key();
+        memberProc.emailcheck("join", sm_email, auth_key);
+
+        return auth_key;
     }
     
     /**
@@ -700,4 +711,6 @@ public class MemberCont {
 
        return mav;
      }
+     
+     
 }

@@ -13,7 +13,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
+<title>공지사항 수정</title>
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
@@ -33,15 +33,11 @@
  
 <DIV class='title_line'>공지사항 > 수정</DIV>
 
-<DIV class='content_body'>
-  <DIV id='panel_create' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; text-align: center;'>
-    <FORM name='frm_update' id='frm_update' method='POST' action='./update.do'>
-      <input type='hidden' name='noticeno' id='noticeno' value='${noticeno }'>
-        
-      <div class="form-group">
+<FORM name='frm' method='POST' action='./update.do' class="form-horizontal">
+   <div class="form-group">
        <label class="control-label col-md-2">관리자번호</label>
        <div class="col-md-10">
-         <input type='text' name='adminid' value='' required="required" placeholder="1"
+         <input type='text' name='adminid' value='' required="required" placeholder="관리자번호"
                     autofocus="autofocus" class="form-control" style='width: 50%;'>
        </div>
     </div>

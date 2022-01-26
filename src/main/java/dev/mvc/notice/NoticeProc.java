@@ -22,7 +22,6 @@ public class NoticeProc implements NoticeProcInter{
     @Override
     public int create(NoticeVO noticeVO) {
         int cnt = noticeDAO.create(noticeVO);
-
         return cnt;
     }
     

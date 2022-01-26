@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.apihouse.ApihouseDAOInter">
+
+    <insert id="insert" parameterType="dev.mvc.apihouse.ApihouseVO">
+            insert into apihouse(houseno, rcode ,name, area, amount, year, cyear, month, lat, lon)
+            values(apihouse_seq.nextval, #{rcode}, #{name}, #{area}, #{amount}, #{year}, #{cyear}, #{month}, #{lat}, #{lon})
+    </insert>
+    
+    <select id="gethousesByUserInput" parameterType="HashMap" resultType="dev.mvc.apihouse.ApihouseVO">
+        select houseno, rcode ,name, area, amount, year, cyear, month, lat, lon
+        from apihouse
+        where rcode=#{rcode} and year=#{year} and month=#{month}
+    </select>
+    
+    <select id="getHouseByPk" parameterType="int" resultType="dev.mvc.apihouse.ApihouseVO">
+         select houseno, rcode ,name, area, amount, year, cyear, month, lat, lon
+         from apihouse
+         where houseno=#{houseno}
+    </select>
+    
+</mapper>

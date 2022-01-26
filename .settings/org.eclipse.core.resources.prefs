@@ -6,5 +6,7 @@ encoding//src/main/resources/application.properties=UTF-8
 encoding//src/main/webapp/WEB-INF/doc/QnA\uAD00\uB9AC/qna_qnacate.sql=utf-8
 encoding//src/main/webapp/WEB-INF/doc/faq/faq.sql=utf-8
 encoding//src/main/webapp/WEB-INF/doc/\uB2F5\uBCC0/answer.sql=utf-8
+encoding//src/main/webapp/WEB-INF/doc/\uC8FC\uD0DD\uB370\uC774\uD130(\uACF5\uACF5\uB370\uC774\uD130\uD3EC\uD138API)/apihouse.sql=utf-8
+encoding//src/main/webapp/WEB-INF/doc/\uC9C0\uC5ED\uC815\uBCF4(\uACF5\uACF5\uB370\uC774\uD130\uD3EC\uD138API)/region.sql=utf-8
 encoding//src/main/webapp/WEB-INF/doc/\uD1B5\uD569/\uD1B5\uD569.ddl=utf-8
 encoding/<project>=UTF-8

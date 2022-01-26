@@ -75,8 +75,7 @@ public class AnswerCont {
             mav.addObject("url", "/answer/msg");
             mav.setViewName("redirect:/answer/msg.do");
         }
-        
-        
+
         return mav;
     }
     

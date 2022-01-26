@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import dev.mvc.faq.FaqVO;
+
  
 @Component("dev.mvc.house.HouseProc")
 public class HouseProc implements HouseProcInter {
@@ -49,6 +51,13 @@ public int delete(int houseno) {
     int cnt = this.houseDAO.delete(houseno);
     return cnt;
 }
+
+@Override
+public List<HouseVO> getListWithFK(int adminid) { return houseDAO.getListWithFK(adminid); }
+
+
+@Override
+public HouseVO getOneWithPK(int houseno) { return houseDAO.getOneWithPK(houseno); }
   
 
 

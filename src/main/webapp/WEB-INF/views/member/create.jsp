@@ -32,15 +32,45 @@
 </style>
 
 <script type="text/javascript">
-  
+  var code ="";
   $(function () { // 자동 실행
       
       $('#btn_checkEmail').on('click', checkEmail);
       $('#btn_checkID').on('click', checkID);
 
       $('#btn_DaumPostcode').on('click', DaumPostcode); // 다음 우편 번호
+      $('#btn_auth').on('click', code_auth); // 인증메일 발송
       $('#btn_close').on('click', setFocus); // Dialog창을 닫은후의 focus 이동
       $('#btn_send').on('click', send);
+      
+      $(document).on("click", "#btn_authEmail", function(){ // 이메일 인증 버튼
+	      //alert($(this).attr("value"));
+        //alert(email_duplicate);
+        var frm = $('#frm'); // id가 frm인 태그 검색
+        var email = $('#email', frm).val(); // frm 폼에서 id가 'email'인 태그 검색
+        
+        $.ajax({
+          type: "GET",
+          url: "./mail_auth.do?sm_email="+email,
+          cache: false,
+          success: function (data) {
+            // console.log(data);
+            msg = '· '+email+'로 인증메일이 전송되었습니다.<br>· 인증코드를 입력해주세요.<br>';
+            code = data;
+
+            $('#modal_content').attr('class', 'alert alert-info'); // Bootstrap CSS 변경
+            $('#modal_title').html('Email 인증'); // 제목 
+            $('#modal_content').html(msg);      // 내용
+            $('#modal_input').html('<input type="text" class="form-control" placeholder="Code" id="auth_code">');
+            $('#modal_input').show();
+            $('#btn_auth').show();
+            $('#btn_close').attr("data-focus", "email");  // 닫기 버튼 클릭시 email 입력으로 focus 이동
+            $('#modal_panel').modal();               // 다이얼로그 출력
+          }
+        });
+
+        
+      });
 
       $('#phone').keyup(function (event) { // 전화번호 자동 하이픈(-)
         event = event || window.event;
@@ -68,60 +98,69 @@
           }
         }
       });
-      
 
     });
-
+  
+  var email_duplicate = false;
   function checkEmail() { // 이메일 중복확인
 
       var frm = $('#frm'); // id가 frm인 태그 검색
       var email = $('#email', frm).val(); // frm 폼에서 id가 'email'인 태그 검색
       var params = '';
       var msg = '';
-
+      
       if ($.trim(email).length == 0) { // email를 입력받지 않은 경우
-        msg = '· Email을 입력하세요.<br>· Email 입력은 필수 입니다.<br>';
+      msg = '· Email을 입력하세요.<br>· Email 입력은 필수 입니다.<br>';
 
-        $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap CSS 변경
-        $('#modal_title').html('Email 중복 확인'); // 제목 
-        $('#modal_content').html(msg);        // 내용
-        $('#btn_close').attr("data-focus", "email");  // 닫기 버튼 클릭시 email 입력으로 focus 이동
-        $('#modal_panel').modal();               // 다이얼로그 출력
-        return false;
-      } else {  // when Email is entered
-        params = 'email=' + email;
+      $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap CSS 변경
+      $('#modal_title').html('Email 중복 확인'); // 제목 
+      $('#modal_content').html(msg);        // 내용
+      $('#btn_close').attr("data-focus", "email");  // 닫기 버튼 클릭시 email 입력으로 focus 이동
+      $('#modal_panel').modal();               // 다이얼로그 출력
+      $('#modal_input').hide();
+      $('#btn_auth').hide();
+      return false;
+    } else {  // when Email is entered
+      params = 'email=' + email;
 
-        $.ajax({
-          url: './checkEmail.do', // spring execute
-          type: 'get',  // post
-          cache: false, // 응답 결과 임시 저장 취소
-          async: true,  // true: 비동기 통신
-          dataType: 'json', // 응답 형식: json, html, xml...
-          data: params,      // 데이터
-          success: function (rdata) { // 서버로부터 성공적으로 응답이 온경우
-            var msg = "";
+      $.ajax({
+        url: './checkEmail.do', // spring execute
+        type: 'get',  // post
+        cache: false, // 응답 결과 임시 저장 취소
+        async: true,  // true: 비동기 통신
+        dataType: 'json', // 응답 형식: json, html, xml...
+        data: params,      // 데이터
+        success: function (rdata) { // 서버로부터 성공적으로 응답이 온경우
+          var msg = "";
 
-            if (rdata.cnt > 0) {
-              $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap CSS 변경
-              msg = "이미 사용중인 Email 입니다.";
-              $('#btn_close').attr("data-focus", "email");  // email 입력으로 focus 이동
-            } else {
-              $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap CSS 변경
-              msg = "사용 가능한 Email 입니다.";
-              $('#btn_close').attr("data-focus", "id");  // id 입력으로 focus 이동
-              // $.cookie('checkId', 'TRUE'); // Cookie 기록
-            }
-
-            $('#modal_title').html('Email 중복 확인'); // 제목 
-            $('#modal_content').html(msg);        // 내용
-            $('#modal_panel').modal();              // 다이얼로그 출력
-          },
-          // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
-          error: function (request, status, error) { // callback 함수
-            console.log(error);
+          if (rdata.cnt > 0) {
+            $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap CSS 변경
+            msg = "이미 사용중인 Email 입니다.";
+            $('#btn_close').attr("data-focus", "email");  // email 입력으로 focus 이동
+            $('#btn_authEmail').hide();
+            email_duplicate = false;
+          } else {
+            $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap CSS 변경
+            msg = "사용 가능한 Email 입니다.";
+            $('#btn_close').attr("data-focus", "id");  // id 입력으로 focus 이동
+            email_duplicate = true;
+            // $.cookie('checkId', 'TRUE'); // Cookie 기록
+            $("#btn_authEmail").show();
           }
-        });
-      }
+          $('#modal_title').html('Email 중복 확인'); // 제목 
+          $('#modal_content').html(msg);        // 내용
+          $('#modal_panel').modal();              // 다이얼로그 출력
+          $('#modal_input').hide();
+          $('#btn_auth').hide();
+        },
+        // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+        error: function (request, status, error) { // callback 함수
+          console.log(error);
+        }
+      });
+    }
+      
+
     }
   
   function checkID() { // ID 중복확인
@@ -139,6 +178,7 @@
         $('#modal_content').html(msg);        // 내용
         $('#btn_close').attr("data-focus", "id");  // 닫기 버튼 클릭시 id 입력으로 focus 이동
         $('#modal_panel').modal();               // 다이얼로그 출력
+        $('#btn_auth').hide();
         return false;
       } else {  // when ID is entered
         params = 'id=' + id;
@@ -157,16 +197,20 @@
               $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap CSS 변경
               msg = "이미 사용중인 ID 입니다.";
               $('#btn_close').attr("data-focus", "id");  // id 입력으로 focus 이동
+              $("#idDoubleChk").val("false");
             } else {
               $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap CSS 변경
               msg = "사용 가능한 ID 입니다.";
               $('#btn_close').attr("data-focus", "passwd");  // passwd 입력으로 focus 이동
+              $("#idDoubleChk").val("true");
               // $.cookie('checkId', 'TRUE'); // Cookie 기록
             }
 
             $('#modal_title').html('ID 중복 확인'); // 제목 
             $('#modal_content').html(msg);        // 내용
             $('#modal_panel').modal();              // 다이얼로그 출력
+            $('#modal_input').hide();
+            $('#btn_auth').hide();
           },
           // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
           error: function (request, status, error) { // callback 함수
@@ -178,7 +222,7 @@
 
   
 	function autoHypenPhone(str) { // 전화번호 자동 하이픈(-)
-		console.log(str);
+		//console.log(str);
 		str = str.replace(/[^0-9]/g, '');
 		var tmp = '';
 		if (str.length < 4) {
@@ -218,14 +262,15 @@
 
     
 	function send(){ // 회원 가입 처리
-
+    console.log(">>>"+$("#emailDoubleChk").val());
     if ($('#email').val() == "" | $('#id').val() == "" | $('#name').val() == "" | $('#phone').val() == "" ) {
       msg = ' * 필수 항목을 입력하세요.<br>';
       $('#modal_content').attr('class', 'alert alert-danger'); // CSS 변경
       $('#modal_title').html('필수항목 입력 확인'); // 제목 
       $('#modal_content').html(msg); // 내용
       $('#modal_panel').modal(); // 다이얼로그 출력
-
+      $('#modal_input').hide();
+      $('#btn_auth').hide();
       // $('#btn_send').attr('data-focus', 'email');
       return false; // submit 중지
 
@@ -237,17 +282,66 @@
       $('#modal_title').html('패스워드 일치 여부 확인'); // 제목 
       $('#modal_content').html(msg); // 내용
       $('#modal_panel').modal(); // 다이얼로그 출력
-
+      $('#modal_input').hide();
       $('#btn_send').attr('data-focus', 'passwd');
-
+      $('#btn_auth').hide();
       return false; // submit 중지
+      
+    } else if($("#emailDoubleChk").val() != 'true'){
+      msg = ' 이메일 인증을 완료해주세요.<br>';
+      $('#modal_content').attr('class', 'alert alert-danger'); // CSS 변경
+      $('#modal_title').html('이메일인증 확인'); // 제목 
+      $('#modal_content').html(msg); // 내용
+      $('#modal_panel').modal(); // 다이얼로그 출력
+      $('#modal_input').hide();
+      $('#btn_auth').hide();
+      return false; 
+
+    } else if($("#idDoubleChk").val() != 'true'){
+      msg = '이미 사용중인 ID 입니다..<br>';
+      $('#modal_content').attr('class', 'alert alert-danger'); // CSS 변경
+      $('#modal_title').html('ID 중복 확인'); // 제목 
+      $('#modal_content').html(msg); // 내용
+      $('#modal_panel').modal(); // 다이얼로그 출력
+      $('#modal_input').hide();
+      $('#btn_auth').hide();
+      return false; 
     }
 
+    
     var address1 = $('#address1').val();
     var address2 = $('#address2').val();
     var address = address1 + " " + address2;
     $('input[name=address]').attr('value', address);
     $('#frm').submit();
+    
+  }
+
+  function code_auth(){ // 인증 이메일 발송
+    var input_code = $('#auth_code').val();
+    if ($.trim(input_code).length == 0) { // email를 입력받지 않은 경우
+      alert('인증번호를 입력하세요!');
+      return false;
+    } else{
+      if(input_code == code){
+        // alert("인증번호가 일치합니다.");
+        // $(".successEmailChk").text("인증번호가 일치합니다.");
+        // $(".successEmailChk").css("color","green");
+        $("#emailDoubleChk").val("true");
+        $("#email").attr("readonly",true);
+        //$("#sm_email").attr("disabled",true);
+        $('#email_chkNotice').html('');
+        $('#email_chkNotice').html('&nbsp;&nbsp;이메일 인증 완료<br>');
+        $('#email_chkNotice').attr('style', 'color: #126E82; font-size: 13px;');
+      }else{
+        alert('인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.');
+        // $(".successEmailChk").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");
+        // $(".successEmailChk").css("color","red");
+        $("#emailDoubleChk").val("false");
+        $("#auth_code").attr("autofocus",true);
+        return false;
+      }
+    }
   }
 </script>
 </head> 
@@ -267,10 +361,15 @@
         </div>
         <div class="modal-body">
           <p id='modal_content'></p>  <!-- 내용 -->
+          <p id='modal_input'></p> <!-- input -->
         </div>
+        
         <div class="modal-footer">
-          <button type="button" id="btn_close" data-focus="" class="btn btn-default" 
+          <button type="button" id="btn_auth" data-focus="" class="btn btn-primary" 
+                      data-dismiss="modal" style="display: none;">인증</button>
+          <button type="button" id="btn_close" data-focus="" class="btn btn-primary" 
                       data-dismiss="modal">닫기</button>
+                  
         </div>
       </div>
     </div>
@@ -302,6 +401,9 @@
         <div class="input-group col-md-9">
           <input type='text' class="form-control" name='email' id='email' value='' required="required" style='width: 30%;' placeholder="abc@mail.com" autofocus="autofocus">
           <button type='button' id="btn_checkEmail" class="btn btn-info btn-md">중복확인</button>
+          <button type='button' id='btn_authEmail' class='btn btn-danger btn-md' style="display: none;">이메일인증</button>
+          <font id="email_chkNotice" size="2"></font>
+          <input type="hidden" id="emailDoubleChk"/>
         </div>
         <SPAN id='email_span'></SPAN> <!-- Email 중복 관련 메시지 -->        
       </div>
@@ -313,6 +415,7 @@
         <div class="input-group col-md-9">
           <input type='text' class="form-control" name='id' id='id' value='' required="required" style='width: 30%;' placeholder="아이디" autofocus="autofocus">
           <button type='button' id="btn_checkID" class="btn btn-info btn-md">중복확인</button>
+          <input type="hidden" id="idDoubleChk"/>
         </div>
         <SPAN id='id_span'></SPAN> <!-- ID 중복 관련 메시지 -->        
       </div>

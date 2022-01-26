@@ -44,6 +44,8 @@ dependencies {
     implementation 'org.json:json:20180813'
     // https://mvnrepository.com/artifact/org.apache.commons/commons-email
     implementation 'org.apache.commons:commons-email:1.5'
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    implementation 'org.seleniumhq.selenium:selenium-java:4.1.1'
 }
 
 test {

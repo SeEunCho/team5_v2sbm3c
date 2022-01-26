@@ -1,7 +1,5 @@
 package dev.mvc.notice;
-
 import java.util.Date;
-import lombok.Data;
 
 /*
 CREATE TABLE notice(
@@ -14,7 +12,7 @@ CREATE TABLE notice(
 );
  */
 
-//@Data
+
 public class NoticeVO {
 	/** 공지사항 번호 */
 	private int noticeno;
