@@ -16,6 +16,16 @@
           
           win.moveTo(x, y); // 화면 중앙으로 이동
         }
+
+        function recommend(){
+            var url = 'http://127.0.0.1:8000/recommend_house/start/';
+            var win = window.open(url, 'AI 서비스', 'width=1000px, height=800px');
+            
+            var x = (screen.width - 1000) / 2;
+            var y = (screen.height - 800) / 2;
+            
+            win.moveTo(x, y); // 화면 중앙으로 이동
+        }
 </script>
 <DIV class='container_main'> 
   <%-- 화면 상단 메뉴 --%>
@@ -28,7 +38,7 @@
       <A class='menu_link'  href='/notice/list.do'>공지사항</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='/api/call.do'>데이터베이스</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='/trend/chart.do'>공공데이터 통계</A><span class='top_menu_sep'> </span>
-      <A class='menu_link'  href='/'>주택 추천</A><span class='top_menu_sep'> </span>
+      <A class='menu_link'  href='javascript: recommend()'>주택 추천</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='javascript: chatting()'>챗봇 서비스</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='/trend/news.do'>트렌드 분석</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='/faqlist'>자주묻는 질문(FAQ)</A><span class='top_menu_sep'> </span>

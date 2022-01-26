@@ -9,12 +9,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-
+//@Controller
 public class Naver_propertyCont {
     
-    
+//    @Autowired
     public Naver_propertyCont() {
-        // System.out.println("-> naver_property created.");
+        System.out.println("-> naver_property created.");
         System.out.println(url_return("돈암동 한신"));
         //System.out.println(url_return("돈암동 돈암동삼성"));
     }
