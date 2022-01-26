@@ -115,8 +115,8 @@ public class MemberCont {
     }
     
     // 이메일 인증
-    @RequestMapping(value = "/member/mail_auth.do", method = RequestMethod.GET)
     @ResponseBody
+    @RequestMapping(value = "/member/mail_auth.do", method = RequestMethod.GET)
     public String mailCheck(@RequestParam("sm_email") String sm_email) throws Exception{
         String auth_key = memberProc.create_key();
         memberProc.emailcheck("join", sm_email, auth_key);
