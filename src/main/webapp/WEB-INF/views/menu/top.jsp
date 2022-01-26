@@ -31,10 +31,10 @@
   <%-- 화면 상단 메뉴 --%>
   <DIV class='top_img'>
     <DIV class='top_menu_label'><A  href='/' style="color: white;"><img src="/images/logo.png" width="200px" height="100px"></A></DIV>
-    <div style="text-align:center; color: white;" ><h1>당신의 집, 우리가 구해드립니다!</h1></div>
+    <div style="text-align:center; color: white;" ><h1 style="font-size: 36px; color: white; margin-top: 20px; margin-bottom: 10px;">당신의 집, 우리가 구해드립니다!</h1></div>
     <NAV class='top_menu'>
       <span style='padding-left: 0.5%;'></span>
- 
+      <A class='menu_link'  href='/'>HOME</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='/notice/list.do'>공지사항</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='/api/call.do'>데이터베이스</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='/trend/chart.do'>공공데이터 통계</A><span class='top_menu_sep'> </span>

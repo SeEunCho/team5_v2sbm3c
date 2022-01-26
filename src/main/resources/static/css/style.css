@@ -216,7 +216,7 @@
     border-bottom: solid 3px #555555;
     width: 100%;
     margin: 20px auto;
-    font-size: 30px;    
+    font-size: 26px;    
   }
 
     .title_line_answer {
@@ -320,6 +320,7 @@
   .menu_link:link{  /* 방문전 상태 */
     text-decoration: none; /* 밑줄 삭제 */
     color: white;
+    font-size: 17px;
   }
 
   .menu_link:visited{  /* 방문후 상태 */
