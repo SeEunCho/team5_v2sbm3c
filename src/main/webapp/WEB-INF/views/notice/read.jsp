@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>심슨네 가족</title>
+<title>공지사항</title>
 <style type="text/css">
 * {
 	font-family: Malgun Gothic;

@@ -1,13 +1,18 @@
 package dev.mvc.house;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import dev.mvc.faq.FaqVO;
 
 
 @Controller
@@ -142,5 +147,25 @@ public class HouseCont {
       
       return mav;
     }
+    
+    @RequestMapping(value = "/house/{houseno}/read.do", method = RequestMethod.GET)
+    public ModelAndView readHouse(@PathVariable String houseno) {
+        
+        ModelAndView mav = new ModelAndView();      
+        int pk = Integer.parseInt(houseno);
+        
+         HouseVO houseVO = null;
+         houseVO = houseProc.getOneWithPK(pk);
+         
+         if (houseVO != null) { // 조회된 객체가 있으면 read, 없다면 에러 페이지.
+             mav.addObject("houseVO", houseVO);
+             mav.setViewName("/house/read_house");
+         } else {
+             mav.addObject("code", "ObjNotFoundException");
+             mav.setViewName("/house/msg");
+         }
+        return mav;
+    }
+    
     
 }

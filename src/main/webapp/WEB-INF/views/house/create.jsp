@@ -50,7 +50,7 @@
     <div class="form-group">
        <label class="control-label col-md-4">지목</label>
        <div class="col-md-8">
-      <input type='text' name='nomination' value='nomi' required="required" style='width: 60%;'
+      <input type='text' name='nomination' value='' required="required" style='width: 60%;'
                 class="form-control" autofocus="autofocus">
         </div>
     

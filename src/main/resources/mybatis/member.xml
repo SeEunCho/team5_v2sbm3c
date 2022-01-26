@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace = "dev.mvc.member.MemberDAOInter">
@@ -84,5 +83,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="find_id" resultType="String" parameterType="String">
       SELECT id FROM member WHERE email = #{email} AND grade !=99
     </select>
+    
+    <!-- 검색 레코드 갯수 -->
+  <select id="search_count" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) as cnt
+    FROM member
+    <choose>
+      <when test="word == null or word == ''"> <!-- 검색하지 않는 경우의 레코드 갯수 -->
+      </when>
+      <otherwise> <!-- 검색하는 경우의 레코드 갯수 -->
+        WHERE id LIKE '%' || #{word} || '%'
+         OR name LIKE '%' || #{word} || '%'
+         OR email LIKE '%' || #{word} || '%'
+      </otherwise>
+    </choose>
+  </select> 
+  
+    <!-- 검색 목록 + 페이징 + 메인 이미지 -->   
+    <select id="list_by_search_paging" 
+            resultType="dev.mvc.member.MemberVO" parameterType="HashMap">
+    SELECT memberid, id, passwd, name, phone, email, address, grade, r
+    FROM (
+              SELECT memberid, id, passwd, name, phone, email, address, grade, rownum as r
+              FROM (
+                       SELECT memberid, id, passwd, name, phone, email, address, grade
+                       FROM member
+                       <choose>
+                        <when test="word == null or word == ''"> <!-- 검색하지 않는 경우 -->
+                          
+                        </when>
+                        <otherwise>
+                          WHERE id LIKE '%' || #{word} || '%'  <!-- ||: 결합, %첫눈% -->
+                             OR name LIKE '%' || #{word} || '%'
+                             OR email LIKE '%' || #{word} || '%'
+                        </otherwise>
+                       </choose>
+                        ORDER BY memberid ASC
+               )
+    )
+    WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
+     
+  </select> 
+    
     
 </mapper> 

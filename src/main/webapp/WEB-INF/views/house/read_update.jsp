@@ -46,19 +46,19 @@
        
      <div class="form-group">
        <label>지목</label>
-         <input type='text' name='nomination' value='nomi' required="required"
+         <input type='text' name='nomination' value='' required="required"
                     autofocus="autofocus"  style='width: 50%;'>
     </div>
    
     <div class="form-group">
        <label>크기</label>
-         <input type='text' name='area' value='area' required="required"
+         <input type='text' name='area' value='' required="required"
                     autofocus="autofocus" style='width: 50%;'>
     </div>
     
     <div class="form-group">
        <label>위치</label>
-         <input type='text' name='loca' value='loca' required="required"
+         <input type='text' name='loca' value='' required="required"
                     autofocus="autofocus" style='width: 50%;'>
     </div>
        
