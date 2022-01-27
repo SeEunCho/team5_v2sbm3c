@@ -426,7 +426,7 @@
       <label for="passwd" class="col-md-2 control-label" style='font-size: 0.9em;'>패스워드*</label>    
       <div class="col-md-10">
         <input type='password' class="form-control" name='passwd' id='passwd' value='' required="required" style='width: 30%; 
-        font-family: Tahoma; font-weight: bold;' placeholder="패스워드">
+        font-family: Tahoma; font-weight: bold;' placeholder="passwd">
       </div>
     </div>   
 
@@ -434,7 +434,7 @@
       <label for="passwd2" class="col-md-2 control-label" style='font-size: 0.9em;'>패스워드 확인*</label>    
       <div class="col-md-10" id="passwd2_div">
         <input type='password' class="form-control" name='passwd2' id='passwd2' value='' required="required" style='width: 30%; 
-        font-family: Tahoma; font-weight: bold;' placeholder="패스워드">
+        font-family: Tahoma; font-weight: bold;' placeholder="passwd">
         <font id="chkNotice" size="2"></font>
       </div>
     </div>

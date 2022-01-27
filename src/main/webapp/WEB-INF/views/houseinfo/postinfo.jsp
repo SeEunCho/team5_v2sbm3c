@@ -141,8 +141,8 @@ function makeClickListener(searchAddress, houseno) {
   <c:choose>
    <c:when test="${singleApiVO != null && month != nll && year != null}">
      <div class="container" style="text-align: center;"> <h3>서울시 ${singleApiVO.name}의 ${year}년 ${month}월 아파트 실거래정보 입니다.</h3></div>
-     <div class="container" style="text-align: center;"> <span style="font-size: xx-small;">지도 데이터 특성 상 동일아파트 거래의 경우 marker누락이 발생할 수 있습니다.</span></div>
-     <div class="container" style="text-align: center;"> <span style="font-size: xx-small;">정확한 전체 데이터는 우측 상단의 "리스트로 보기" 를 사용해주세요.</span></div> <br>
+     <div class="container" style="text-align: center;"> <span style="color:#808080 ;">지도 데이터 특성 상 동일아파트 거래의 경우 marker누락이 발생할 수 있습니다.</span></div>
+     <div class="container" style="text-align: center;"> <span style="color:#808080 ;">정확한 전체 데이터는 우측 상단의 "리스트로 보기" 를 사용해주세요.</span></div> <br>
    </c:when>
    <c:otherwise>
      

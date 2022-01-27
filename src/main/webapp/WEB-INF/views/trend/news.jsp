@@ -98,7 +98,7 @@
       last_dt.max = today;
 
     $.ajax({
-        url: 'http://3.129.18.217:8000/news/get_item',
+        url: 'http://127.0.0.1:8000/news/get_item',
         type: 'get',  // form method, get
         cache: false, // 응답 결과 임시 저장 취소
         async: true,  // true: 비동기 통신
@@ -190,7 +190,7 @@
         async function log(number) {
           return await
             $.ajax({
-              url: 'http://3.129.18.217:8000/news/crawling', //★ Spring Boot 9091 -> Ajax -> Django 8000 호출
+              url: 'http://127.0.0.1:8000/news/crawling', //★ Spring Boot 9091 -> Ajax -> Django 8000 호출
               type: 'POST',  // form method, get, post
               cache: false, // 응답 결과 임시 저장 취소
               async: true,  // true: 비동기 통신
@@ -275,7 +275,7 @@
     //alert('newsno: ' + newsno);
 
     $.ajax({
-        url: 'http://3.129.18.217:8000/news/delete',
+        url: 'http://127.0.0.1:8000/news/delete',
         type: 'POST',  // form method, get
         cache: false, // 응답 결과 임시 저장 취소
         async: true,  // true: 비동기 통신
@@ -303,7 +303,7 @@
       // return;
 
       $.ajax({
-        url: 'http://3.129.18.217:8000/news/delete_all',
+        url: 'http://127.0.0.1:8000/news/delete_all',
         type: 'get',  // form method, get
         cache: false, // 응답 결과 임시 저장 취소
         async: true,  // true: 비동기 통신
@@ -374,11 +374,36 @@
 
   // 분석 결과 조회
   function btn_trend_analysis_result() {
-    var tags = '';
-    tags += "<img src='/trend/images/news-wordcloud.png' style='width: 100%;'>";
-    $('#panel2').html(tags);
-    $('#panel2').show(); // 숨겨진 태그의 출력
-    $('#panel1').hide(); 
+
+    $.ajax({
+        url: 'http://127.0.0.1:8000/news/analysis_result',
+        type: 'get',  // form method, get
+        cache: false, // 응답 결과 임시 저장 취소
+        async: true,  // true: 비동기 통신
+        dataType: 'json', // 응답 형식: json, html, xml...
+        success: function (rdata) { // 응답이 온경우
+          console.log('-> ' + rdata.msg);
+          code = rdata.code;
+          console.log('-> ' + code);
+          if(code != 0){
+        	    var tags = '';
+        	    tags += "<img src='/trend/images/news-wordcloud.png' style='width: 100%;'>";
+        	    $('#panel2').html(tags);
+        	    $('#panel2').show(); // 숨겨진 태그의 출력
+        	    $('#panel1').hide();
+          } else{
+            var tags1 = rdata.msg;
+            $('#panel1').html(tags1);
+            $('#panel1').show();
+            $('#panel2').hide();
+          }
+        },
+        // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우
+        error: function (request, status, error) { // callback 함수
+          console.log(error);
+        }
+      });
+    
   }
 </script>
 </head> 

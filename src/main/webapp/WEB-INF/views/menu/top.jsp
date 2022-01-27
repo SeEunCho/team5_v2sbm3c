@@ -8,7 +8,7 @@
         }
         
         function chatting(){
-          var url = 'http://3.129.18.217:8000/ais/chatbot/chatting/';
+          var url = 'http://127.0.0.1:8000/ais/chatbot/chatting/';
           var win = window.open(url, '챗봇', 'width=700px, height=630px');
           
           var x = (screen.width - 700) / 2;
@@ -18,7 +18,7 @@
         }
 
         function recommend(){
-            var url = 'http://3.129.18.217:8000/recommend_house/start/';
+            var url = 'http://127.0.0.1:8000/recommend_house/start/';
             var win = window.open(url, 'AI 서비스', 'width=1000px, height=800px');
             
             var x = (screen.width - 1000) / 2;

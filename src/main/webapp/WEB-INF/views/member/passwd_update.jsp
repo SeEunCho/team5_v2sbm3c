@@ -129,7 +129,7 @@
         <div class="col-md-7">
           <input type='password' class="form-control" name='current_passwd' 
                     id='current_passwd' value='' required="required" 
-                    style='width: 30%; font-family: Tahoma; font-weight: bold;' placeholder="패스워드">
+                    style='width: 30%; font-family: Tahoma; font-weight: bold;' placeholder="passwd">
         </div>
       </div>   
                       
@@ -138,7 +138,7 @@
         <div class="col-md-7">
           <input type='password' class="form-control" name='new_passwd' 
                     id='new_passwd' value='' required="required" 
-                    style='width: 30%; font-family: Tahoma; font-weight: bold;' placeholder="패스워드">
+                    style='width: 30%; font-family: Tahoma; font-weight: bold;' placeholder="new_passwd">
         </div>
       </div>   
    
@@ -147,7 +147,7 @@
         <div class="col-md-7">
           <input type='password' class="form-control" name='new_passwd2' 
                     id='new_passwd2' value='' required="required" 
-                    style='width: 30%; font-family: Tahoma; font-weight: bold;' placeholder="패스워드">
+                    style='width: 30%; font-family: Tahoma; font-weight: bold;' placeholder="new_passwd">
           <font id="chkNotice" size="2"></font>
         </div>
       </div>   
