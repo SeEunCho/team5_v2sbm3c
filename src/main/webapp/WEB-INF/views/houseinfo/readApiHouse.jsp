@@ -5,10 +5,9 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>http://localhost:9091/</title>
-<style type="text/css">
-  *{ font-family: Malgun Gothic; font-size: 26px;}
-</style>
+<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
+<title>구해줘! 홈즈</title>
+<link rel="icon" href="/images/house_pavicon.png">
 
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
@@ -73,8 +72,8 @@ $(function () {
       '                <img src="/images/house_pavicon.ico" width="73" height="70">' +
       '           </div>' + 
       '            <div class="desc">' + 
-      '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' + 
-      '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' + 
+      '                <div class="ellipsis">아파트</div>' + 
+      '                <div class="jibun ellipsis">건축년도: 2002년</div>' + 
       '            </div>' + 
       '        </div>' + 
       '    </div>' +    
@@ -126,7 +125,8 @@ $(function () {
     </div>
 
   <DIV class='bottom_menu'>
-    <button type='button' onclick="location.href='https://m.land.naver.com/search'" class="btn btn-primary btn-sm">네이버 부동산<br> 검색하기</button>
+    <!-- <a href="${nUrl}" class="btn btn-primary btn-sm" >네이버 부동산<br> 검색하기</a> -->
+    <%-- <button type='button' onclick="location.href='${nUrl}'" class="btn btn-primary btn-sm">네이버 부동산<br> 검색하기</button> --%>
     <button type='button' onclick="location.href='https://map.kakao.com/link/search/${apihouseVO.name}'" class="btn btn-primary btn-sm">다음 맵으로<br>검색하기</button>
   </DIV>
  

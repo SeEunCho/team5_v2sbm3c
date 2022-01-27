@@ -6,8 +6,9 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Resort world</title>
- 
+
+<title>구해줘! 홈즈</title>
+<link rel="icon" href="/images/house_pavicon.png">
  
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  

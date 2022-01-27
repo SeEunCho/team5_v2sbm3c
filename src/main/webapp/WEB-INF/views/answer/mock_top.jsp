@@ -4,12 +4,8 @@
 <DIV class='container_main'> 
   <%-- 화면 상단 메뉴 --%>
   <DIV class='top_img'>
-    <DIV class='top_menu_label'>주택 매물시스템</DIV>
-    <NAV class='top_menu'>
-      <span style='padding-left: 0.5%;'></span>
-      <span class='menu_link'>개인 팝업 창</span> 
-      
-    </NAV>
+    <DIV class='top_menu_label'>구해줘! 홈즈</DIV>
+
   </DIV>
      
   <%-- 내용 --%> 

@@ -6,8 +6,10 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>심슨네 가족</title>
  
+<title>구해줘! 홈즈</title>
+<link rel="icon" href="/images/house_pavicon.png">
+
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -57,7 +59,7 @@
     <DIV class='title_line'> 자주묻는 질문(FAQ) </DIV>
     
     <DIV class='content_body'>
-      <TABLE class='table table-striped'>
+      <TABLE class="table table-hover" style='width: 100%;'>
         <colgroup>
           <col style='width: 20%;'/>
           <col style='width: 20%;'/>
@@ -93,7 +95,14 @@
           
           <TR>
             <TD class="td_bs"><a href="/faq/${faqno }/read.do">${title }</a></TD>
-            <TD class="td_bs"><a href="/faq/${faqno }/read.do">${text }</a></TD>
+            <c:choose>
+            <c:when test="${text.length() > 10 }"> <!-- 긴 주소 처리 -->
+             <TD class="td_bs"><a href="/faq/${faqno }/read.do">${text.substring(0, 5) }...</a></TD>
+            </c:when>
+            <c:otherwise>
+              <TD class="td_bs"><a href="/faq/${faqno }/read.do">${text }...</a></TD>
+            </c:otherwise>
+            </c:choose>
             <TD class="td_bs"><a href="/faq/${faqno }/read.do">${cdate }</a></TD>
             <TD class="td_bs"><a href="/faq/${faqno }/read.do">${adminid }</a></TD>
             <c:choose><%-- 관리자만 수정 / 삭제 가능 --%>

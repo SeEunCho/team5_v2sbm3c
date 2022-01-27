@@ -7,8 +7,8 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title></title>
-
+<title>구해줘! 홈즈</title>
+<link rel="icon" href="/images/house_pavicon.png">
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
 
 <script type="text/JavaScript"
@@ -89,7 +89,7 @@
 
   function pyechart1() { 
       $.ajax({
-        url: 'http://127.0.0.1:8000/property/chart1',
+        url: 'http://3.129.18.217:8000/property/chart1',
         type: 'post',  // form method, get
         cache: false, // 응답 결과 임시 저장 취소
         async: true,  // true: 비동기 통신
@@ -120,7 +120,7 @@
 
     function pyechart2() { 
       $.ajax({
-        url: 'http://127.0.0.1:8000/property/chart2',
+        url: 'http://3.129.18.217:8000/property/chart2',
         type: 'post',  // form method, get
         cache: false, // 응답 결과 임시 저장 취소
         async: true,  // true: 비동기 통신
@@ -153,7 +153,7 @@
 
     function pyechart3() { 
       $.ajax({
-        url: 'http://127.0.0.1:8000/property/chart3',
+        url: 'http://3.129.18.217:8000/property/chart3',
         type: 'post',  // form method, get
         cache: false, // 응답 결과 임시 저장 취소
         async: true,  // true: 비동기 통신

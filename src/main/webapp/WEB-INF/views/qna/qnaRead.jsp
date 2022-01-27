@@ -5,10 +5,9 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>http://localhost:9091/</title>
-<style type="text/css">
-  *{ font-family: Malgun Gothic; font-size: 26px;}
-</style>
+<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
+<title>구해줘! 홈즈</title>
+<link rel="icon" href="/images/house_pavicon.png">
 
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
@@ -93,10 +92,6 @@ function deleteAnswerByWindow (answerno) {
 
          <ASIDE class="aside_right">
           <A href="javascript:location.reload();">새로고침</A>
-          <span class='menu_divide' >│</span> 
-          <A href='./list.do'>목록</A>
-          <!-- <span class='menu_divide' >│</span>
-          <A href='./create.do'>탈퇴회원</A> -->
         </ASIDE> 
 
          <div class='menu_line'></div>
@@ -115,17 +110,17 @@ function deleteAnswerByWindow (answerno) {
                 ${qnaVO.title}
                </div>
             </div>
-            <br>
+            <br><br>
 
             <div class="content_body">
                <label class="col-md-2">본문</label>
                <div class="col-md-10">
-                  <div class="textarea_basic">
+                  <div style="width:100%; height: 400px; border: solid 1px;">
                    ${qnaVO.text}
                  </div>
                </div>
             </div>
-            <br>
+            <br><br>
 
             <div class="content_body_bottom">
               <div class="col-md-5">
@@ -159,7 +154,7 @@ function deleteAnswerByWindow (answerno) {
               <div id="answer_content" class="content_body">
                 <label class="col-md-2">관리자 답변</label>
                   <div class="col-md-10">
-                    <div class="textarea_basic">
+                    <div style="width:100%; height: 400px; border: solid 1px;">
                       <c:choose>
                         <c:when test="${answerVO != null}">
                           ${answerVO.answer}

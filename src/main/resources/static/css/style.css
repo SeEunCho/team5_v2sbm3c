@@ -12,9 +12,9 @@
   }
 
 
-  *{
+  * {
      /*font-family: 'Dongle', sans-serif;*/
-     font-family: "BM-doh";
+     font-family: "BM-doh", sans-serif;
      font-size: 16px; 
      margin: 0px;  /* top right bottom left */
      padding: 0px;

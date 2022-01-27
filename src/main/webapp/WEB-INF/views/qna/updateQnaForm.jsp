@@ -5,7 +5,9 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>http://localhost:9091/</title>
+<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
+<title>구해줘! 홈즈</title>
+<link rel="icon" href="/images/house_pavicon.png">
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -85,7 +87,7 @@ function setDropdown() {
            <label class="control-label col-md-2">제목</label>
            <div class="col-md-10">
              <input type='text' name='title' value='${title }' required="required" 
-                       autofocus="autofocus" class="form-control" style='width: 90%;'>
+                       autofocus="autofocus" maxlength='20' class="form-control" style='width: 90%;'>
            </div>
         </div>
        
@@ -105,7 +107,7 @@ function setDropdown() {
         <div class="form-group">
            <label class="control-label col-md-2">본문</label>
            <div class="col-md-10">
-             <textarea name='text' required="required" class="form-control" rows="12" style='width: 90%;'>${text }</textarea>
+             <textarea name='text' required="required" class="form-control" maxlength='50' rows="12" style='width: 90%;'>${text }</textarea>
            </div>
         </div>
         

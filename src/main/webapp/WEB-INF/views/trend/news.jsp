@@ -7,8 +7,8 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title></title>
-
+<title>구해줘! 홈즈</title>
+<link rel="icon" href="/images/house_pavicon.png">
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
 
 <script type="text/JavaScript"
@@ -98,7 +98,7 @@
       last_dt.max = today;
 
     $.ajax({
-        url: 'http://127.0.0.1:8000/news/get_item',
+        url: 'http://3.129.18.217:8000/news/get_item',
         type: 'get',  // form method, get
         cache: false, // 응답 결과 임시 저장 취소
         async: true,  // true: 비동기 통신
@@ -190,7 +190,7 @@
         async function log(number) {
           return await
             $.ajax({
-              url: 'http://127.0.0.1:8000/news/crawling', //★ Spring Boot 9091 -> Ajax -> Django 8000 호출
+              url: 'http://3.129.18.217:8000/news/crawling', //★ Spring Boot 9091 -> Ajax -> Django 8000 호출
               type: 'POST',  // form method, get, post
               cache: false, // 응답 결과 임시 저장 취소
               async: true,  // true: 비동기 통신
@@ -275,7 +275,7 @@
     //alert('newsno: ' + newsno);
 
     $.ajax({
-        url: 'http://127.0.0.1:8000/news/delete',
+        url: 'http://3.129.18.217:8000/news/delete',
         type: 'POST',  // form method, get
         cache: false, // 응답 결과 임시 저장 취소
         async: true,  // true: 비동기 통신
@@ -303,7 +303,7 @@
       // return;
 
       $.ajax({
-        url: 'http://127.0.0.1:8000/news/delete_all',
+        url: 'http://3.129.18.217:8000/news/delete_all',
         type: 'get',  // form method, get
         cache: false, // 응답 결과 임시 저장 취소
         async: true,  // true: 비동기 통신
@@ -337,7 +337,7 @@
     // return;
     var code;
     $.ajax({
-      url: 'http://127.0.0.1:8000/news/trend_analysis',
+      url: 'http://3.129.18.217:8000/news/trend_analysis',
       type: 'get',  // form method, get
       cache: false, // 응답 결과 임시 저장 취소
       async: true,  // true: 비동기 통신

@@ -8,8 +8,8 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>공지사항</title>
- 
+<title>구해줘! 홈즈</title>
+<link rel="icon" href="/images/house_pavicon.png">
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -34,14 +34,15 @@
     <span class='menu_divide' >│</span>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>
-    <A href="./list_by_noticeno_grid1.do?noticeno=${noticeVO.noticeno }">갤러리형</A>
   </ASIDE> 
+
+  <div class='menu_line'></div>
     
-  <TABLE class='table table-striped'>
+  <TABLE class='table table-hover'>
     <colgroup>
       <col style='width: 10%;'/>
-      <col style='width: 40%;'/>
       <col style='width: 20%;'/>
+      <col style='width: 40%;'/>
       <col style='width: 10%;'/>    
       <col style='width: 20%;'/>
     </colgroup>
@@ -69,10 +70,18 @@
         <TD class="td_bs_left"><A href="../notice/read.do?noticeno=${noticeno }">${noticetitle }</A></TD>
         <TD class="td_bs_left"><A href="../notice/read.do?noticeno=${noticeno }">${noticecontent }</A></TD>
         <TD class="td_bs">${rdate}</TD>
-        <TD class="td_bs">
-          <A href="./read_update.do?noticeno=${noticeno }" title="수정"><span class="glyphicon glyphicon-pencil"></span></A>
-          <A href="./read_delete.do?noticeno=${noticeno }" title="삭제"><span class="glyphicon glyphicon-trash"></span></A>
-        </TD>   
+
+        <c:choose>
+         <c:when test="${sessionScope.adminid != null && sessionScope.admin_flag == true}">
+           <TD class="td_bs">
+            <A href="./read_update.do?noticeno=${noticeno }" title="수정"><span class="glyphicon glyphicon-pencil"></span></A>
+            <A href="./read_delete.do?noticeno=${noticeno }" title="삭제"><span class="glyphicon glyphicon-trash"></span></A>
+          </TD> 
+        </c:when> 
+          <c:otherwise>
+            <TD class="td_bs">--</TD>            
+          </c:otherwise> 
+        </c:choose> 
       </TR>   
     </c:forEach> 
     </tbody>

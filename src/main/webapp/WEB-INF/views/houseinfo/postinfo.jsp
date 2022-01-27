@@ -5,8 +5,9 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>http://localhost:9091/</title>
-
+<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
+<title>구해줘! 홈즈</title>
+<link rel="icon" href="/images/house_pavicon.png">
 <link href="/css/style.css" rel="Stylesheet" type="text/css">
  
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -35,6 +36,7 @@ $(function () {
 
     for (var i in jsonList) {
 
+      var houseno = jsonList[i].houseno;
       var name = jsonList[i].name;
       var contstYear = jsonList[i].cyear;
       var amount = jsonList[i].amount;
@@ -70,7 +72,7 @@ $(function () {
       // 클로저 함수를 for scope 밖에 선언하지 않으면 맨 마지막 마커에만 마우스 이벤트가 등록되는 오류가 발생. 
       kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
       kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-      kakao.maps.event.addListener(marker, 'click', makeClickListener(searchAddress));
+      kakao.maps.event.addListener(marker, 'click', makeClickListener(searchAddress, houseno));
 
       marker.setMap(map);
 
@@ -88,9 +90,29 @@ function makeOutListener(infowindow) {
     };
 }
 
-function makeClickListener(searchAddress) {
+function makeClickListener(searchAddress, houseno) {
     return function() {
-         window.open(searchAddress, '다음지도 검색', 'width=1200px, height=820px');
+
+      var params = "";
+      $.ajax(
+      {
+        url: '/api/' + houseno + '/read_marker.do',
+        type: 'get',
+        cache: false,
+        async: true,
+        dataType: 'json',
+        data: params,
+        success: function(rdata) {
+          var nurl = rdata.nUrl;
+
+          window.open(nurl, '네이버 부동산','width=1200px, height=820px');
+        },
+        error(result, response, error) {
+          console.log(error);
+        }
+
+      });
+         
     };
 }
 

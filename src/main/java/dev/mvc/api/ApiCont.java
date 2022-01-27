@@ -22,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -45,7 +46,7 @@ public class ApiCont {
     private ApihouseProcInter apihouseProc;
     
     private static final String WEB_DRIVER_ID = "webdriver.chrome.driver"; //드라이버 ID
-    private static final String WEB_DRIVER_PATH = "C:/kd1/team5/team5_v2sbm3c/chromedriver.exe"; //드라이버 경로
+    private static final String WEB_DRIVER_PATH = "/home/ubuntu/wars/chromedriver.exe"; //드라이버 경로
     
 
     /**
@@ -65,10 +66,10 @@ public class ApiCont {
             model.addAttribute("list", list);
         }
         // "houseinfo/getinfo";
-        return "index";
+        return "houseinfo/getinfo";
     }
     
-    // 마커 or list에서 하나 클릭시에 상세조회 할 수 있는 컨트롤러
+    // List에서 하나 클릭시에 상세조회 할 수 있는 컨트롤러
     @RequestMapping(value = "/api/{houseno}/read.do", method = RequestMethod.GET)
     public String readOne(@PathVariable String houseno, Model model) {
         
@@ -76,24 +77,42 @@ public class ApiCont {
         
         ApihouseVO apihouseVO = null;
         apihouseVO = apihouseProc.getHouseByPk(pk);
-        //ObjectMapper mapper = new ObjectMapper();
-        
+
         if(apihouseVO == null) {
             System.out.println("객체 조회가 되지 않습니다.");
         }
-        
+
         model.addAttribute("apihouseVO", apihouseVO);
-        
-//        try {
-//            String tempVO = mapper.writeValueAsString(apihouseVO);
-//            model.addAttribute("apihouseVO", tempVO);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
 
         return "houseinfo/readApiHouse";
     }
     
+    
+    // 마커 에서 하나 클릭시에 상세조회 할 수 있는 컨트롤러
+    @ResponseBody
+    @RequestMapping(value = "/api/{houseno}/read_marker.do", method = RequestMethod.GET)
+    public String readOneForMarker(@PathVariable String houseno, Model model) {
+        
+        int pk = Integer.parseInt(houseno);
+        
+        JSONObject json = new JSONObject();
+        ApihouseVO apihouseVO = null;
+        apihouseVO = apihouseProc.getHouseByPk(pk);
+        String nUrl = null;
+        nUrl = url_return(apihouseVO.getName());
+        System.out.println(nUrl);
+        if(apihouseVO == null) {
+            System.out.println("객체 조회가 되지 않습니다.");
+        }
+        
+        if (nUrl == null) {
+            System.out.println("링크 조회가 되지 않습니다.");
+        }
+        
+        json.put("nUrl", nUrl);
+
+        return json.toString();
+    }
     
     // 사용자 입력값에 대해 데이터베이스에 검색하여 관련 데이터 전달하는 컨트롤러 
     // 사용자가 map으로 볼 때 해당 컨트롤러가 작동.
@@ -116,6 +135,8 @@ public class ApiCont {
         list = apiProc.getAllRegion();
         apiVO = apiProc.getOneByRegionCode(regionCode);
         houseList = apihouseProc.gethousesByUserInput(map);
+        
+        //여기서 지희님이 보내주신 함수로, 반복문 돌려서 링크 만들어진 부분으로 보내보기.
         
         System.out.println();
         
@@ -196,8 +217,6 @@ public class ApiCont {
     
     
     
-    
-   
     
     // 해당 컨트롤러를 db 저장용 open api 통신 컨트롤러로 구현함.
     // 관리자가 form에서 '구' + 거래일자 선택하여 submit 하면, OpenApi통신 및 결과 DB에 저장.
