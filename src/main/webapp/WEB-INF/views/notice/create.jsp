@@ -40,8 +40,8 @@
    <div class="form-group">
        <label class="control-label col-md-2">관리자번호</label>
        <div class="col-md-10">
-         <input type='text' name='adminid' value='' required="required" placeholder="관리자번호"
-                    autofocus="autofocus" class="form-control" style='width: 50%;'>
+         <input type='text' name='adminid' value='${adminid}' required="required" placeholder="관리자번호"
+                    autofocus="autofocus" class="form-control" style='width: 50%;' readonly="readonly">
        </div>
     </div>
     <div class="form-group">

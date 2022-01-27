@@ -28,10 +28,14 @@ public class NoticeCont {
      * @return
      */
     @RequestMapping(value = "/notice/create.do", method = RequestMethod.GET)
-    public ModelAndView create() {
+    public ModelAndView create(HttpSession session) {
         ModelAndView mav = new ModelAndView();
+        // System.out.println(session.getAttribute("adminid"));
+        int adminid = (int)session.getAttribute("adminid");
+        mav.addObject("adminid", adminid);
+        
         mav.setViewName("/notice/create"); // webapp/WEB-INF/views/notice/create.jsp
-
+        
         return mav; // forward
     }
 

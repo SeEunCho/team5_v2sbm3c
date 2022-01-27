@@ -30,20 +30,24 @@
 
 <DIV class='content_body'>
 <ASIDE class="aside_right">
-    <A href="./create.do">등록</A>
-    <span class='menu_divide' >│</span>
-    <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span>
+    <c:choose>
+    <c:when test="${sessionScope.adminid != null && sessionScope.admin_flag == true}">
+        <A href="./create.do">등록</A>
+        <span class='menu_divide' >│</span>
+        <A href="javascript:location.reload();">새로고침</A>
+        <span class='menu_divide' >│</span>
+    </c:when>
+    </c:choose>
   </ASIDE> 
 
   <div class='menu_line'></div>
     
   <TABLE class='table table-hover'>
     <colgroup>
-      <col style='width: 10%;'/>
       <col style='width: 20%;'/>
       <col style='width: 40%;'/>
-      <col style='width: 10%;'/>    
+<%--       <col style='width: 40%;'/> --%>
+      <col style='width: 20%;'/>    
       <col style='width: 20%;'/>
     </colgroup>
    
@@ -51,7 +55,7 @@
     <TR>
       <TH class="th_bs">번호</TH>
       <TH class="th_bs">제목</TH>
-      <TH class="th_bs">내용</TH>
+<!--       <TH class="th_bs">내용</TH> -->
       <TH class="th_bs">등록일</TH>
       <TH class="th_bs">기타</TH>
     </TR>
@@ -63,12 +67,12 @@
       <c:set var="noticeno" value="${noticeVO.noticeno }" />
       <c:set var="adminid" value="${noticeVO.adminid }" />
       <c:set var="noticetitle" value="${noticeVO.noticetitle }" />
-      <c:set var="noticecontent" value="${noticeVO.noticecontent }" />
+    <c:set var="noticecontent" value="${noticeVO.noticecontent }" />
       <c:set var="rdate" value="${noticeVO.rdate.substring(0, 10) }" />
       <TR>
         <TD class="td_bs">${noticeno }</TD>
         <TD class="td_bs_left"><A href="../notice/read.do?noticeno=${noticeno }">${noticetitle }</A></TD>
-        <TD class="td_bs_left"><A href="../notice/read.do?noticeno=${noticeno }">${noticecontent }</A></TD>
+        <%-- <TD class="td_bs_left"><A href="../notice/read.do?noticeno=${noticeno }">${noticecontent }</A></TD> --%>
         <TD class="td_bs">${rdate}</TD>
 
         <c:choose>

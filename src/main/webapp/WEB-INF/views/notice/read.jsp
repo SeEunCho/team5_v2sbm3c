@@ -29,7 +29,7 @@
 
 	<DIV style="width: 47%; height: 260px; float: left; margin-right: 10px; margin-bottom: 30px;">
           <span style="font-size: 1.5em; font-weight: bold;">${noticeVO.noticetitle }</span><br><br>
-          <span style="font-size: 1.5em; font-weight: mideum;">${noticeVO.noticecontent }</span><br>
+          <div style="font-size: 1.5em; font-weight: mideum; white-space:pre;" >${noticeVO.noticecontent }</div><br>
     </DIV>
 	
 

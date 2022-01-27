@@ -35,8 +35,8 @@
 
  <DIV class='title_line'>
   <A href="../notice/list.do" class='title_link'>공지사항</A> > 
-  <A href="../notice/list_by_noticeno.do?noticeno=${noticeVO.noticeno }" class='title_link'>${noticeVO.noticetitle }</A> >
-  ${noticeVO.noticetitle } 삭제
+  <A href="../notice/read.do?noticeno=${noticeVO.noticeno }" class='title_link'>${noticeVO.noticetitle }</A> >
+  <span style="font-size: 20px;"> 삭제</span>
   </DIV>
 
 	<DIV class='content_body'>
