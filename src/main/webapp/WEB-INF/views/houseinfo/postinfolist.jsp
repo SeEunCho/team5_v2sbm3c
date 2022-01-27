@@ -32,7 +32,7 @@
   <c:choose>
    <c:when test="${singleApiVO != null && month != nll && year != null}">
      <div class="container" style="text-align: center;"> <h3>서울시 ${singleApiVO.name}의 ${year}년 ${month}월 아파트 실거래정보 입니다.</h3></div>
-     <div class="container" style="text-align: center;"> <span style="font-size: xx-small;">다른 거래정보를 검색하시려면 우측 상단의 다시검색을 눌러주세요.</span></div><br>
+     <div class="container" style="text-align: center;"> <span style="color:#808080;">다른 거래정보를 검색하시려면 우측 상단의 다시검색을 눌러주세요.</span></div><br>
    </c:when>
    <c:otherwise>
      

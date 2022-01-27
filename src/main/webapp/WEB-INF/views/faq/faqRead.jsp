@@ -24,17 +24,18 @@
  <jsp:include page="/WEB-INF/views/menu/top.jsp" flush='false' />
  
      <DIV class='title_line'>자주묻는 질문(FAQ)</DIV><br><br>
-
+     <DIV class='content_body'>
             
-         <DIV style="width: 60%; height: 260px; float: left; margin-right: 10px; margin-bottom: 30px;">
+         <!-- <DIV style="width: 60%; height: 260px; float: left; margin-right: 10px; margin-bottom: 30px;"> -->
+         <DIV>
          <span style="font-size: 1.5em; font-weight: bold;">${faqVO.title }</span><br><br>
-          <span style="font-size: 1.2em; font-weight: mideum;">${faqVO.text}</span><br>
+          <span style="font-size: 1.2em; font-weight: mideum; white-space:pre;">${faqVO.text}</span><br>
          </DIV>
     
             <div class="content_body_bottom">
               <button type="button" onclick="location.href='/faqlist'" class="btn btn-primary">목록</button>
             </div>
- 
+     </DIV>
   <jsp:include page="/WEB-INF/views/menu/bottom.jsp" flush='false' />
   
 </body>

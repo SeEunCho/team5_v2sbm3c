@@ -61,8 +61,8 @@
     <DIV class='content_body'>
       <TABLE class="table table-hover" style='width: 100%;'>
         <colgroup>
-          <col style='width: 20%;'/>
-          <col style='width: 20%;'/>
+          <col style='width: 40%;'/>
+          <%-- <col style='width: 20%;'/> --%>
           <col style='width: 30%;'/>
           <col style='width: 15%;'/>
           <col style='width: 15%;'/>
@@ -71,7 +71,7 @@
         <thead>  
         <TR>
           <TH class="th_bs">제목</TH>
-          <TH class="th_bs">본문</TH>
+         <!--  <TH class="th_bs">본문</TH> -->
           <TH class="th_bs">생성(수정) 일자</TH>
           <TH class="th_bs">담당 관리자 번호</TH>
         <c:choose>
@@ -95,14 +95,14 @@
           
           <TR>
             <TD class="td_bs"><a href="/faq/${faqno }/read.do">${title }</a></TD>
-            <c:choose>
+            <%-- <c:choose>
             <c:when test="${text.length() > 10 }"> <!-- 긴 주소 처리 -->
              <TD class="td_bs"><a href="/faq/${faqno }/read.do">${text.substring(0, 5) }...</a></TD>
             </c:when>
             <c:otherwise>
               <TD class="td_bs"><a href="/faq/${faqno }/read.do">${text }...</a></TD>
-            </c:otherwise>
-            </c:choose>
+            </c:otherwise> 
+            </c:choose>--%>
             <TD class="td_bs"><a href="/faq/${faqno }/read.do">${cdate }</a></TD>
             <TD class="td_bs"><a href="/faq/${faqno }/read.do">${adminid }</a></TD>
             <c:choose><%-- 관리자만 수정 / 삭제 가능 --%>
