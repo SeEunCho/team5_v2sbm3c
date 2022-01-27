@@ -337,7 +337,8 @@
     // return;
     var code;
     $.ajax({
-      url: 'http://3.129.18.217:8000/news/trend_analysis',
+      //url: 'http://3.129.18.217:8000/news/trend_analysis',
+      url: 'http://127.0.0.1:8000/news/trend_analysis',
       type: 'get',  // form method, get
       cache: false, // 응답 결과 임시 저장 취소
       async: true,  // true: 비동기 통신

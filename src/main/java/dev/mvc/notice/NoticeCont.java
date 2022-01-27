@@ -102,6 +102,7 @@ public class NoticeCont {
         } catch(NullPointerException e) {
             admin_flag = false;
         } 
+        //System.out.println(admin_flag);
         
         if (admin_flag) {
             NoticeVO noticeVO = this.noticeProc.read(noticeno);

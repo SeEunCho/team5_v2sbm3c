@@ -34,18 +34,20 @@
 <DIV class='title_line'>공지사항 > 수정</DIV>
 
 <FORM name='frm' method='POST' action='./update.do' class="form-horizontal">
+<input type='hidden' name='noticeno' id='noticeno' value='${param.noticeno}'>
+
    <div class="form-group">
        <label class="control-label col-md-2">관리자번호</label>
        <div class="col-md-10">
-         <input type='text' name='adminid' value='' required="required" placeholder="관리자번호"
-                    autofocus="autofocus" class="form-control" style='width: 50%;'>
+         <input type='text' name='adminid' value='${noticeVO.adminid }' required="required" placeholder="관리자번호"
+                    autofocus="autofocus" class="form-control" style='width: 50%;' readonly="readonly">
        </div>
     </div>
  
       <div class="form-group">
        <label class="control-label col-md-2">제목</label>
        <div class="col-md-10">
-         <input type='text' name='noticetitle' value='' required="required" placeholder="제목을 입력하세요"
+         <input type='text' name='noticetitle' value='${noticeVO.noticetitle }' required="required" placeholder="제목을 입력하세요"
                     autofocus="autofocus" class="form-control" style='width: 80%;'>
        </div>
     </div>
@@ -53,8 +55,8 @@
       <div class="form-group">
        <label class="control-label col-md-2">내용</label>
        <div class="col-md-10">
-         <textarea name='noticecontent' required="required" placeholder="내용을 입력하세요"
-           class="form-control" rows="12" style='width: 100%;'></textarea>
+         <textarea name='noticecontent' required="required" placeholder="내용을 입력하세요" 
+           class="form-control" rows="12" style='width: 100%;'>${noticeVO.noticecontent }</textarea>
        </div>
     </div>  
        
