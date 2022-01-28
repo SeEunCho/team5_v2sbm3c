@@ -46,7 +46,7 @@ public class ApiCont {
     private ApihouseProcInter apihouseProc;
     
     private static final String WEB_DRIVER_ID = "webdriver.chrome.driver"; //드라이버 ID
-    private static final String WEB_DRIVER_PATH = "/home/ubuntu/wars/chromedriver.exe"; //드라이버 경로
+    private static final String WEB_DRIVER_PATH = "C:/kd1/ws_java/team5_v2sbm3c/chromedriver.exe"; //드라이버 경로
     
 
     /**

@@ -36,11 +36,13 @@
       <span style='padding-left: 0.5%;'></span>
       <A class='menu_link'  href='/'>HOME</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='/notice/list.do'>공지사항</A><span class='top_menu_sep'> </span>
+      <A class='menu_link'  href='/faqlist'>자주묻는 질문(FAQ)</A><span class='top_menu_sep'> </span>
+      <A class='menu_link'  href='/trend/news.do'>트렌드 분석</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='/trend/chart.do'>공공데이터 통계</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='javascript: recommend()'>주택 추천</A><span class='top_menu_sep'> </span>
       <A class='menu_link'  href='javascript: chatting()'>챗봇 서비스</A><span class='top_menu_sep'> </span>
-      <A class='menu_link'  href='/trend/news.do'>트렌드 분석</A><span class='top_menu_sep'> </span>
-      <A class='menu_link'  href='/faqlist'>자주묻는 질문(FAQ)</A><span class='top_menu_sep'> </span>
+     
+      
 
       <c:choose>
         <c:when test="${sessionScope.id != null && !sessionScope.admin_flag == true}"> <%-- "회원" 로그인 한 경우 --%>

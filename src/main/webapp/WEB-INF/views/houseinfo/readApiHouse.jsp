@@ -42,11 +42,6 @@
 
 $(function () {
 
-  // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 zzz
-  function closeOverlay() {
-      overlay.setMap(null);     
-   }
-
     var lat = eval(${apihouseVO.lat});
     var lon = eval(${apihouseVO.lon});
 
@@ -72,8 +67,7 @@ $(function () {
       '                <img src="/images/house_pavicon.ico" width="73" height="70">' +
       '           </div>' + 
       '            <div class="desc">' + 
-      '                <div class="ellipsis">아파트</div>' + 
-      '                <div class="jibun ellipsis">건축년도: 2002년</div>' + 
+      '                <div class="ellipsis">아파트</div>' +  
       '            </div>' + 
       '        </div>' + 
       '    </div>' +    
@@ -97,6 +91,13 @@ $(function () {
       position: marker.getPosition()       
     });
 
+
+    // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 zzz
+  function closeOverlay() {
+      overlay.setMap(null);     
+   }
+
+
          // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
   kakao.maps.event.addListener(marker, 'click', function() {
     overlay.setMap(map);
@@ -119,10 +120,41 @@ $(function () {
 
     <div class="container" id="map" style="width: 100%; height: 600px;"></div>
 
-    <div>
-      이름 = ${apihouseVO.name}<br>
-      전용면적 = ${apihouseVO.area}
-    </div>
+   <DIV class='content_body'>
+
+    
+    <table class="table table-hover" style='width: 100%;'>
+      <colgroup>
+        <col style='width: 32%;' />
+        <col style='width: 12%;' />
+        <col style='width: 22%;' />
+        <col style='width: 12%;' />
+        <col style='width: 12%;' />
+        <col style='width: 10%;' />
+      </colgroup>
+      <thead>
+        <tr>
+          <TH scope="col" style="text-align:center">이름</TH>
+          <TH scope="col" style="text-align:center">전용면적</TH>
+          <TH scope="col" style="text-align:center">거래가격</TH>
+          <TH scope="col" style="text-align:center">거래년도</TH>
+          <TH scope="col" style="text-align:center">거래 월</TH>
+          <TH scope="col" style="text-align:center">건축년도</TH>
+        </tr>
+      </thead>
+    
+       
+    <TR>
+      <TD class='td_basic'>${apihouseVO.name }</TD>   
+      <TD class= td_basic>${apihouseVO.area} m²</TD>
+      <TD class='td_basic'>${apihouseVO.amount} (만원)</TD>
+      <TD class='td_basic'>${apihouseVO.year}</TD>
+      <TD class='td_basic'>${apihouseVO.month}</TD>
+      <TD class='td_basic'>${apihouseVO.cyear}</TD>
+    </TR>
+
+  </TABLE>
+</div>
 
   <DIV class='bottom_menu'>
     <!-- <a href="${nUrl}" class="btn btn-primary btn-sm" >네이버 부동산<br> 검색하기</a> -->
