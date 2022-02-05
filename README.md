@@ -1,4 +1,4 @@
-# 🏚Tean#5 AI기반 주택추천시스템 (가명)
+# 🏚구해줘! 홈즈
 
 ```
 서울시 부동산 시세정보를 제공하는 웹 서비스, Tean#5의 repository입니다.
@@ -16,12 +16,12 @@
  >4. 부동산 시세 확인
  
  
-## Contact us!   (팀원분들은 메일주소 업데이트 해주세요!!)
+## Contact us!
 
->- 조세은: [dnebpetal@kakao.com](dnebpetal@kakao.com)
->- 차대현: [fuyfu61@naver.com](fuyfu61@naver.com)
->- 최용석: [dydtjr1717@gmail.com](dydtjr1717@gmail.com)
->- 하지희: [quakquak622@naver.com](quakquak622@naver.com)
+>- 조세은: [dnebpetal@kakao.com](dnebpetal@kakao.com)  (챗봇 개발 담당)
+>- 차대현: [fuyfu61@naver.com](fuyfu61@naver.com)  (추천 시스템개발 담당)
+>- 최용석: [dydtjr1717@gmail.com](dydtjr1717@gmail.com) (Spring side, Map api 기능 개발담당)
+>- 하지희: [quakquak622@naver.com](quakquak622@naver.com) (Spring side, 회원 및 관리자 개발 + 트렌드분석 및 시각화 개발 담당)
 
 
 ## Table of Contents
@@ -35,7 +35,10 @@
  
  ## requirements
 
- > blahblah
+ > STS (ver. 4.6.0 or later)
+ > Java 8 or later
+ > Git
+ > Pycharm (Python 3.7 or later)
  
  
  ## mac project setup
