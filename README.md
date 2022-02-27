@@ -20,7 +20,12 @@
 
 >- 조세은: [dnebpetal@kakao.com](dnebpetal@kakao.com)  (챗봇 개발 담당)
 >- 차대현: [fuyfu61@naver.com](fuyfu61@naver.com)  (추천 시스템개발 담당)
+
 >- 최용석: [dydtjr1717@gmail.com](dydtjr1717@gmail.com) (Spring side, Map api 기능 개발담당)
+>- ================== 프로젝트 기술서를 확인하시려면 아래 링크를 통해 다운받아보세요! ==============================
+>- _**프로젝트기술서(최용석)**_ [구해줘!홈즈_프로젝트기술서.pdf](https://github.com/SeEunCho/team5_v2sbm3c/files/8147844/_.pdf)
+>- ============================================================================================
+
 >- 하지희: [quakquak622@naver.com](quakquak622@naver.com) (Spring side, 회원 및 관리자 개발 + 트렌드분석 및 시각화 개발 담당)
 
 
@@ -35,27 +40,27 @@
  
  ## requirements
 
- > STS (ver. 4.6.0 or later)
- > Java 8 or later
- > Git
- > Pycharm (Python 3.7 or later)
+ >- STS (ver. 4.6.0 or later)
+ >- Java 8 or later
+ >- Git
+ >- Pycharm (Python 3.7 or later)
  
  
  ## mac project setup
  
- > blahblah
+ >--
  
  
  ## windows project setup
  
- > blahblah
+ >--
  
  
  ## endpoints
  
- > blahblah
+ >--
  
  
  ## references
  
- > blahblah
+ >- 
